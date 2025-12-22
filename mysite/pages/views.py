@@ -9,7 +9,7 @@ def index(request):
     content = {
         'title': 'Main Page',
         'content': 'Hello People',
-        'days_left': date2.days,
+        'days_left': int(date2.days),
     }
     return render(request, 'index.html', content)
 
