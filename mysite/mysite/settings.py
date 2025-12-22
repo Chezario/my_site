@@ -135,4 +135,4 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 STATIC_URL = 'static/'
-STATIC_ROOT = '/home/www/mysite/static/'  # для production
+STATIC_ROOT = '/home/www/my_site/mysite/static/'  # для production
