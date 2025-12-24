@@ -1,8 +1,8 @@
-asgiref==3.11.0
-DateTime==6.0
-Django==6.0
-gunicorn==23.0.0
-packaging==25.0
-pytz==2025.2
-sqlparse==0.5.5
-zope.interface==8.1.1
+asgiref
+DateTime
+Django
+gunicorn
+packaging
+pytz
+sqlparse
+zope.interface
