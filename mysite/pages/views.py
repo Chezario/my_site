@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from datetime import datetime, timedelta
+from django.utils.safestring import mark_safe
 
 
 def check_time(time_object: timedelta):
@@ -17,18 +18,15 @@ def index(request):
     content = {
         'title': 'Main Page',
         'content': 'Hello People',
-        'days_left': int(delta.days),
+        'data_base': [
+            mark_safe(f'<b>{int(delta.days)} дней </b> осталось до нового года.'),
+            datetime.now(),
+            'Проверка карточек',
+            'Еще одна карточка',
+        ],
     }
     return render(request, 'index.html', content)
 
 
 if __name__ == '__main__':
-    current_date = datetime.now()
-    custom_date = datetime(2026, 1, 1)
-    delta = check_time(custom_date - current_date)
-    content = {
-        'title': 'Main Page',
-        'content': 'Hello People',
-        'days_left': int(delta.days),
-    }
-    print(content['days_left'])
+    pass

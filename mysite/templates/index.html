@@ -1,21 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
   <div class="row">
-    <div class="col-12 col-lg-6">
-      <div class="card">
-        <div class="card-body">
-          <h1><b>{{ days_left }}</b> дней осталось до нового года!</h1>
+    {% for value in data_base %}
+      <div class="col-12 col-lg-6">
+        <div class="card">
+          <div class="card-body"> 
+            {{ value }}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-12 col-lg-6">
-      <div class="card">
-        <div class="card-body">
-          {{ now }}
-          {% comment %} {% load tz %}
-          {{ now|timezone:"Europe/Moscow" }} {% endcomment %}
-        </div>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 {% endblock content %}
