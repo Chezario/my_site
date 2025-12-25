@@ -1,17 +1,18 @@
 <div class="row">
 <div class="col-12 col-lg-6">
-    <div class="card">
-    <div class="card-body">
-        {% block content %}<h1><b>{{ days_left }}</b> дней осталось до нового года!</h1>{% endblock %}
-    </div>
-    </div>
+	<div class="card">
+	  <div class="card-body">
+		  {% block content %}<h1><b>{{ days_left }}</b> дней осталось до нового года!</h1>{% endblock %}
+	  </div>
+	</div>
 </div>
 <div class="col-12 col-lg-6">
-    <div class="card">
-    <div class="card-body">
-        Вообще новая карточка
-    </div>
-    </div>
+	<div class="card">
+		<div class="card-body">
+			{% load tz %}
+			{{ some_datetime|timezone:"Europe/Moscow" }}
+		</div>
+	</div>
 </div>
 </div>
 
