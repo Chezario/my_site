@@ -1,6 +1,5 @@
-from django.http import HttpResponse
 from django.shortcuts import render
-from datetime import datetime, date, timedelta
+from datetime import datetime, timedelta
 
 
 def check_time(time_object: timedelta):
@@ -24,4 +23,12 @@ def index(request):
 
 
 if __name__ == '__main__':
-    pass
+    current_date = datetime.now()
+    custom_date = datetime(2026, 1, 1)
+    delta = check_time(custom_date - current_date)
+    content = {
+        'title': 'Main Page',
+        'content': 'Hello People',
+        'days_left': int(delta.days),
+    }
+    print(content['days_left'])

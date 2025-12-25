@@ -6,12 +6,12 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/vendor/bootstrap.min.css' %}">
     <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
-    <title>Обратный отсчет</title>
+    <title>{% block title %}Главная страница{% endblock title %}</title>
   </head>
   <body>
     <div class="container">
       {% include "includes/header.html" %}
-      {% include "includes/content.html" %}
-    </div>
+      {% block content %}Это главная страница{% endblock content %}
+      </div>
   </body>
 </html>
