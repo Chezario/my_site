@@ -1,4 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-  {% include "includes/content.html" %}
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h1><b>{{ days_left }}</b> дней осталось до нового года!</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          {{ now }}
+          {% comment %} {% load tz %}
+          {{ now|timezone:"Europe/Moscow" }} {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock content %}
