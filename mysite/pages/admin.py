@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Printers, Room
 
-# Register your models here.
+
+admin.site.register(Room)
+admin.site.register(Printers)
+
