@@ -126,7 +126,7 @@ TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = False
 
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
