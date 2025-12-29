@@ -37,6 +37,8 @@ def index(request):
             f'Еще одна карточка',
         ],
     }
+    if current_date >= custom_date:
+        content['data_base'][0] = 'Новый год наступил'
     return render(request, 'index.html', content)
 
 
