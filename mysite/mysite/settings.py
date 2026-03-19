@@ -136,3 +136,7 @@ STATICFILES_DIRS = [
 ]
 STATIC_URL = 'static/'
 STATIC_ROOT = '/home/www/my_site/mysite/static/'  # для production
+
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/dashboard/'  # куда перенаправлять после входа
+LOGOUT_REDIRECT_URL = '/'           # куда после выхода

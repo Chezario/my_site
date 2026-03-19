@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from datetime import datetime, timedelta
 from django.utils.safestring import mark_safe
+from django.contrib.auth.decorators import login_required
 
 
 def plural_form(n, forms=('день', 'дня', 'дней')):
@@ -23,6 +24,7 @@ def check_time(time_object: timedelta):
     return time_object
 
 
+@login_required
 def index(request):
     current_date = datetime.now()
     custom_date = datetime(2026, 1, 1)
