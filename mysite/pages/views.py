@@ -47,3 +47,9 @@ def index(request):
 if __name__ == '__main__':
     for i in range(11):
         print(plural_form(i))
+
+
+@login_required
+def dashboard(request):
+    content = {}
+    return render(request, 'dashboard.html', content)
