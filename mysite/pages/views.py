@@ -8,7 +8,7 @@ from django.utils import timezone
 from .t_invest_utils import get_real_price
 from .models import SecurityTransaction
 import subprocess
-
+import os
 
 def plural_form(n, forms=('день', 'дня', 'дней')):
     # n = abs(n) % 100
@@ -85,8 +85,13 @@ if __name__ == '__main__':
 
 @login_required
 def dashboard(request):
+    venv_path = "/home/www/my_site/venv"
+    env = os.environ.copy()
+    bin_dir = os.path.join(venv_path, 'bin')
+    env['PATH'] = bin_dir + os.pathsep + env.get('PATH', '')
     result = subprocess.run(
         ['python3', 'pages/test_package.py'],
+        env=env,
         capture_output=True,
         text=True
     )
