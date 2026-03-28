@@ -85,7 +85,9 @@ if __name__ == '__main__':
 @login_required
 def dashboard(request):
     transactions = SecurityTransaction.objects.all()
-    current_prices = {}
+    current_prices = {
+        'price': get_real_price('SBER')
+    }
     # for transaction in transactions:
     #     current_prices[transaction.security.name] = get_real_price(transaction.security.name)
     # print(current_prices)
