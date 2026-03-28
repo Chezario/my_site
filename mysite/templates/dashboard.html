@@ -20,7 +20,25 @@
       <th>Результат для суммы с учетом налога</th></tr></thead>
       <tbody>
       
-        {% for transaction in transactions %}
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td class="table-success"></td>
+        <td></td>
+        <td>86,3559</td>
+        <td></td>
+        <td class="table-success"></td>
+        <td>-0,30%</td>
+        <td>-0,02%</td>
+        <td>1</td>
+        <td>-0,26</td>
+        <td>-0,01</td>
+        <td>-605,3140</td>
+        <td>-605,3140</td>
+      </tr>
+
+        {% comment %} {% for transaction in transactions %}
       <tr>
         <td>{{ transaction.security.name }}</td>
         <td>{{ transaction.transaction_date }}</td>
@@ -37,7 +55,7 @@
         <td>-605,3140</td>
         <td>-605,3140</td>
       </tr>
-      {% endfor %}
+      {% endfor %} {% endcomment %}
     </tbody>
   </table>
 {% endblock content %}
