@@ -92,7 +92,7 @@ def dashboard(request):
     )
     transactions = SecurityTransaction.objects.all()
     current_prices = {
-        'price': result.stdout
+        'price': result
     }
     # for transaction in transactions:
     #     current_prices[transaction.security.name] = get_real_price(transaction.security.name)
