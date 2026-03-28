@@ -7,6 +7,7 @@ from django.utils import timezone
 
 from .t_invest_utils import get_real_price
 from .models import SecurityTransaction
+import subprocess
 
 
 def plural_form(n, forms=('день', 'дня', 'дней')):
@@ -84,9 +85,14 @@ if __name__ == '__main__':
 
 @login_required
 def dashboard(request):
+    result = subprocess.run(
+        ['python3', 'pages/test_package.py'],
+        capture_output=True,
+        text=True
+    )
     transactions = SecurityTransaction.objects.all()
     current_prices = {
-        'price': get_real_price('SBER')
+        'price': result.stdout
     }
     # for transaction in transactions:
     #     current_prices[transaction.security.name] = get_real_price(transaction.security.name)
