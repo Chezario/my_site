@@ -85,20 +85,21 @@ if __name__ == '__main__':
 
 @login_required
 def dashboard(request):
-    venv_path = "/home/www/my_site/venv"
-    env = os.environ.copy()
-    bin_dir = os.path.join(venv_path, 'bin')
-    env['PATH'] = bin_dir + os.pathsep + env.get('PATH', '')
-    result = subprocess.run(
-        ['python3', 'pages/test_package.py'],
-        env=env,
-        capture_output=True,
-        text=True
-    )
-    transactions = SecurityTransaction.objects.all()
-    current_prices = {
-        'price': result
-    }
+    token = os.getenv('INVEST_TOKEN')
+    # venv_path = "/home/www/my_site/venv"
+    # env = os.environ.copy()
+    # bin_dir = os.path.join(venv_path, 'bin')
+    # env['PATH'] = bin_dir + os.pathsep + env.get('PATH', '')
+    # result = subprocess.run(
+    #     ['python3', 'pages/test_package.py'],
+    #     env=env,
+    #     capture_output=True,
+    #     text=True
+    # )
+    # transactions = SecurityTransaction.objects.all()
+    # current_prices = {
+    #     'price': result
+    # }
     # for transaction in transactions:
     #     current_prices[transaction.security.name] = get_real_price(transaction.security.name)
     # print(current_prices)
@@ -107,8 +108,9 @@ def dashboard(request):
     #     transaction.real_price = transaction.price_per_share * (1 + transaction.broker.fee)
     #     transaction.price_to_zero = transaction.price_per_share * ((1 + transaction.broker.fee) / (1 - transaction.broker.fee))
     context = {
-        'transactions': transactions,
-        'current_prices': current_prices
+        'token': token
+        # 'transactions': transactions,
+        # 'current_prices': current_prices
     }
     # content[name2] = {
     #     'name': name2,
