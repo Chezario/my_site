@@ -1,11 +1,15 @@
 from t_tech.invest import Client
 import os
 
+from get_figi import find_figi_by_ticker
+from get_number import quotation_to_decimal
+
+# Получаем токен из переменных окружения (рекомендуемый способ)
+TOKEN = os.getenv("INVEST_TOKEN")
+if not TOKEN:
+    raise ValueError("Токен T-Invest API не найден в переменной окружения INVEST_TOKEN")
+
 def get_stock_price(figi: str) -> float:
-
-    TOKEN = os.getenv("INVEST_TOKEN")
-
-    client_obj = Client(TOKEN)
     """
     Получает текущую цену акции по FIGI.
 
@@ -15,10 +19,9 @@ def get_stock_price(figi: str) -> float:
     Returns:
         float: Текущая цена акции
     """
-
     try:
         # Создаём клиент с токеном
-        with client_obj as client:
+        with Client(TOKEN) as client:
             # Получаем последнюю цену по FIGI
             response = client.market_data.get_last_prices(figi=[figi])
 
@@ -36,3 +39,10 @@ def get_stock_price(figi: str) -> float:
     except Exception as e:
         print(f"Ошибка при получении цены: {e}")
         raise
+
+# Пример использования
+if __name__ == "__main__":
+    # FIGI акций Сбербанка (пример)
+    SBER_FIGI = find_figi_by_ticker('SBER')
+    price = get_stock_price(SBER_FIGI)
+    print(quotation_to_decimal(price))

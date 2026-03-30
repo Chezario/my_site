@@ -23,6 +23,3 @@ __pycache__/
 # Системные файлы
 .DS_Store
 Thumbs.db
-
-# Локальная статика
-static_dev
