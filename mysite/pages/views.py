@@ -85,6 +85,7 @@ if __name__ == '__main__':
 
 @login_required
 def dashboard(request):
+<<<<<<< HEAD
     token = os.getenv('INVEST_TOKEN')
     # venv_path = "/home/www/my_site/venv"
     # env = os.environ.copy()
@@ -100,6 +101,10 @@ def dashboard(request):
     # current_prices = {
     #     'price': result
     # }
+=======
+    transactions = SecurityTransaction.objects.all()
+    current_prices = {}
+>>>>>>> parent of e8c7921 (test new fichures)
     # for transaction in transactions:
     #     current_prices[transaction.security.name] = get_real_price(transaction.security.name)
     # print(current_prices)
