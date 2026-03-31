@@ -1,9 +1,10 @@
 from t_tech.invest import Client
 import os
+from .token import INVEST_TOKEN
 
 def get_stock_price(figi: str) -> float:
 
-    TOKEN = os.getenv("INVEST_TOKEN")
+    TOKEN = INVEST_TOKEN  # TOKEN = os.getenv("INVEST_TOKEN")
 
     client_obj = Client(TOKEN)
     """

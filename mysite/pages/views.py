@@ -60,13 +60,36 @@ if __name__ == '__main__':
         print(plural_form(i))
 
 
+@login_required
+def dashboard(request):
+    transactions = SecurityTransaction.objects.all()
+    current_prices = {}
+    for transaction in transactions:
+        current_prices[transaction.security.name] = get_real_price(transaction.security.name)
+    print(current_prices)
+    for transaction in transactions:
+        transaction.current_price = current_prices.get(transaction.security.name, 0)
+        transaction.real_price = transaction.price_per_share * (1 + transaction.broker.fee)
+        transaction.price_to_zero = transaction.price_per_share * ((1 + transaction.broker.fee) / (1 - transaction.broker.fee))
+    context = {
+        'transactions': transactions,
+        'current_prices': current_prices
+    }
+    # content[name2] = {
+    #     'name': name2,
+    #     'date': '2026-03-23',
+    #     'start_price': '315,86',
+    #     'current_price': get_real_price(name2)
+    # }
+    return render(request, 'dashboard.html', context)
+
+
 # @login_required
 # def dashboard(request):
 #     transactions = SecurityTransaction.objects.all()
 #     current_prices = {}
-#     for transaction in transactions:
-#         current_prices[transaction.security.name] = get_real_price(transaction.security.name)
-#     print(current_prices)
+#     # for transaction in transactions:
+#     #     current_prices[transaction.security.name] = get_real_price(transaction.security.name)
 #     for transaction in transactions:
 #         transaction.current_price = current_prices.get(transaction.security.name, 0)
 #         transaction.real_price = transaction.price_per_share * (1 + transaction.broker.fee)
@@ -82,43 +105,3 @@ if __name__ == '__main__':
 #     #     'current_price': get_real_price(name2)
 #     # }
 #     return render(request, 'dashboard.html', context)
-
-
-@login_required
-def dashboard(request):
-    token = INVEST_TOKEN
-    # venv_path = "/home/www/my_site/venv"
-    # env = os.environ.copy()
-    # bin_dir = os.path.join(venv_path, 'bin')
-    # env['PATH'] = bin_dir + os.pathsep + env.get('PATH', '')
-    # result = subprocess.run(
-    #     ['python3', 'pages/test_package.py'],
-    #     env=env,
-    #     capture_output=True,
-    #     text=True
-    # )
-    # transactions = SecurityTransaction.objects.all()
-    # current_prices = {
-    #     'price': result
-    # }
-    # transactions = SecurityTransaction.objects.all()
-    # current_prices = {}
-    # for transaction in transactions:
-    #     current_prices[transaction.security.name] = get_real_price(transaction.security.name)
-    # print(current_prices)
-    # for transaction in transactions:
-    #     transaction.current_price = current_prices.get(transaction.security.name, 0)
-    #     transaction.real_price = transaction.price_per_share * (1 + transaction.broker.fee)
-    #     transaction.price_to_zero = transaction.price_per_share * ((1 + transaction.broker.fee) / (1 - transaction.broker.fee))
-    context = {
-        'token': token
-        # 'transactions': transactions,
-        # 'current_prices': current_prices
-    }
-    # content[name2] = {
-    #     'name': name2,
-    #     'date': '2026-03-23',
-    #     'start_price': '315,86',
-    #     'current_price': get_real_price(name2)
-    # }
-    return render(request, 'dashboard.html', context)

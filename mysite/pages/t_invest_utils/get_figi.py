@@ -1,10 +1,11 @@
 
 from t_tech.invest import Client
 import os
+from .token import INVEST_TOKEN
 
 
 def get_figi_by_ticker(ticker: str) -> dict:
-    TOKEN = os.getenv("INVEST_TOKEN")
+    TOKEN = INVEST_TOKEN  # TOKEN = os.getenv("INVEST_TOKEN")
 
     client_obj = Client(TOKEN)
     
