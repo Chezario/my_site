@@ -9,6 +9,7 @@ from .t_invest_utils import get_real_price
 from .models import SecurityTransaction
 import subprocess
 import os
+from .token import INVEST_TOKEN
 
 def plural_form(n, forms=('день', 'дня', 'дней')):
     # n = abs(n) % 100
@@ -85,8 +86,7 @@ if __name__ == '__main__':
 
 @login_required
 def dashboard(request):
-<<<<<<< HEAD
-    token = os.getenv('INVEST_TOKEN')
+    token = INVEST_TOKEN
     # venv_path = "/home/www/my_site/venv"
     # env = os.environ.copy()
     # bin_dir = os.path.join(venv_path, 'bin')
@@ -101,10 +101,8 @@ def dashboard(request):
     # current_prices = {
     #     'price': result
     # }
-=======
-    transactions = SecurityTransaction.objects.all()
-    current_prices = {}
->>>>>>> parent of e8c7921 (test new fichures)
+    # transactions = SecurityTransaction.objects.all()
+    # current_prices = {}
     # for transaction in transactions:
     #     current_prices[transaction.security.name] = get_real_price(transaction.security.name)
     # print(current_prices)
