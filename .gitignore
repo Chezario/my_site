@@ -26,3 +26,5 @@ Thumbs.db
 
 # Локальная статика
 static_dev
+db.sqlite3
+token.txt
