@@ -67,11 +67,11 @@ def dashboard(request):
     current_prices = {}
     for transaction in transactions:
         current_prices[transaction.security.name] = get_real_price(transaction.security.name)
-        transaction['current_price'] = current_prices.get(transaction.security.name, 0)
-        transaction['real_price'] = transaction.price_per_share * (1 + transaction.broker.fee)
-        transaction['price_to_zero'] = transaction.price_per_share * ((1 + transaction.broker.fee) / (1 - transaction.broker.fee))
-        transaction['percent'] = (transaction.price_per_share - transaction.real_price) / (transaction.price_per_share / 100)
-    # for transaction in transactions:
+    for transaction in transactions:
+        transaction.current_price = current_prices.get(transaction.security.name, 0)
+        transaction.real_price = transaction.price_per_share * (1 + transaction.broker.fee)
+        transaction.price_to_zero = transaction.price_per_share * ((1 + transaction.broker.fee) / (1 - transaction.broker.fee))
+        transaction.percent = (transaction.price_per_share - transaction.real_price) / (transaction.price_per_share / 100)
     context = {
         'transactions': transactions,
         'current_prices': current_prices
