@@ -79,4 +79,4 @@ class SecurityTransaction(models.Model):
         field_values = []
         for field in self._meta.get_fields():
             field_values.append(str(getattr(self, field.name, '')))
-        return ' '.join(field_values)
+        return ' | '.join(field_values)
