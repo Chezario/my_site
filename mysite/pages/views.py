@@ -63,7 +63,7 @@ if __name__ == '__main__':
 
 @login_required
 def dashboard(request):
-    transactions = SecurityTransaction.objects.all()
+    transactions = SecurityTransaction.objects.filter(is_on_dashboard=True)
     current_prices = {}
     for transaction in transactions:
         current_prices[transaction.security.name] = get_real_price(transaction.security.name)
