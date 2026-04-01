@@ -75,4 +75,8 @@ class SecurityTransaction(models.Model):
         ordering = ['-transaction_date']
 
     def __str__(self):
-        return f"{self.transaction_type} {self.quantity} {self.ticker} от {self.transaction_date}"
+        # return f"{self.transaction_type} {self.quantity} {self.ticker} от {self.transaction_date}"
+        field_values = []
+        for field in self._meta.get_fields():
+            field_values.append(str(getattr(self, field.name, '')))
+        return ' '.join(field_values)
