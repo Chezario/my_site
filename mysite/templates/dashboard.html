@@ -13,7 +13,7 @@
       <th>реальная цена продажи</th>
       <th>Выйти в 0</th>
       <th>Текущая цена</th>
-      <th>изменение в % LONG</th>
+      <th>Количество</th>
       <th>изменение в % SHORT</th>
       <th>Прошло дней</th>
       <th>Результат LONG</th>
@@ -50,7 +50,7 @@
         <td>86,3559</td>
         <td>{{ transaction.price_to_zero|floatformat:4 }}</td>
         <td class="table-success">{{ transaction.current_price }}</br>{{ transaction.percent }}</td>
-        <td>-0,30%</td>
+        <td>{{ transaction.quantity }}</td>
         <td>-0,02%</td>
         <td>1</td>
         <td>-0,26</td>
