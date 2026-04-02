@@ -8,12 +8,12 @@
     <tr class="tableizer-firstrow">
       <th>название</th>
       <th>Дата операции</th>
+      <th>Количество</th>
       <th>Начальная цена</th>
       <th>Реальная цена покупки</th>
       <th>реальная цена продажи</th>
       <th>Выйти в 0</th>
       <th>Текущая цена</th>
-      <th>Количество</th>
       <th>изменение в % SHORT</th>
       <th>Прошло дней</th>
       <th>Результат LONG</th>
@@ -45,12 +45,12 @@
       <tr>
         <td>{{ transaction.security.name }}</td>
         <td>{{ transaction.transaction_date }}</td>
+        <td>{{ transaction.quantity }}</td>
         <td class="table-success">{{ transaction.price_per_share }}</td>
         <td>{{ transaction.real_price|floatformat:4 }}</td>
         <td>86,3559</td>
         <td>{{ transaction.price_to_zero|floatformat:4 }}</td>
         <td class="table-success">{{ transaction.current_price }}</br>{{ transaction.percent }}</td>
-        <td>{{ transaction.quantity }}</td>
         <td>-0,02%</td>
         <td>1</td>
         <td>-0,26</td>
