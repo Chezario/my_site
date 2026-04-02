@@ -36,6 +36,13 @@ class SecurityTransaction(models.Model):
         decimal_places=4,
         verbose_name='Цена за бумагу'
     )
+    tmon_price_on_date = models.DecimalField(
+        max_digits=10,
+        decimal_places=4,
+        blank=True,
+        null=True,
+        verbose_name='Цена за бумагу'
+    )
     total_amount = models.DecimalField(
         max_digits=10,
         decimal_places=4,
