@@ -33,27 +33,14 @@ def check_time(time_object: timedelta):
 
 @login_required
 def index(request):
+    transactions = SecurityTransaction.objects.filter(is_on_dashboard=False)
+    for transaction in transactions:
+        pass
+    context = {
+        'transactions': transactions,
+    }
 
- 
-
-    # current_date = datetime.now()
-    # custom_date = datetime(2026, 1, 1)
-    # delta = check_time(custom_date - current_date)
-    # content = [1, 2, 3, 4]
-    # context = {
-    #     'title': 'Main Page',
-    #     'content': 'Hello People',
-    #     'data_base': [
-    #         mark_safe(f'<b>{int(delta.days)} {plural_form(int(delta.days))} </b> осталось до нового года.'),
-    #         datetime.now(),
-    #         'Проверка карточек',
-    #         f'Еще одна карточка',
-    #     ],
-    # }
-    # if current_date >= custom_date:
-    #     content['data_base'][0] = 'Новый год наступил'
-    # return render(request, 'index.html', context)
-    return render(request, 'index.html')
+    return render(request, 'index.html', context=context)
 
 
 if __name__ == '__main__':

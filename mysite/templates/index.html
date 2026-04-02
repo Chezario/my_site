@@ -1,32 +1,30 @@
 {% extends 'base.html' %}
-{% comment %} {% block content %}
-  <div class="row">
-    {% for value in data_base %}
-      <div class="col-12 col-lg-6">
-        <div class="card">
-          <div class="card-body"> 
-            {{ value }}
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-    {% load static %}
-    
-
-      <iframe
-        width="720"
-        height="405"
-        src="https://rutube.ru/play/embed/29ada30220fc637fac144e0c3da1f7ec"
-        style="border: none;"
-        allow="clipboard-write; autoplay"
-        allowFullScreen
-      ></iframe>
-    
-    
-  </div> 
-
-  {% for element in cont %}
-  <p>{{ element }}</p>
+{% block content %}
+  {% for transaction in transactions %}
+    <table class="table table-striped table-hover table-bordered">
+      <thead>
+        <tr class="tableizer-firstrow">
+          <th>id</th>
+          <th>Название</th>
+          <th>Количество</th>
+          <th>Начальная цена</th>
+          <th>Цена продажи</th>
+          <th>Результат для суммы</th>
+          <th>Результат для суммы с учетом налога</th></tr>
+        </thead>
+      <tbody>
+      {% for transaction in transactions %}
+      <tr>
+        <td>{{ transaction.id }}</td>
+        <td>{{ transaction.security.name }}</td>
+        <td>{{ transaction.quantity }}</td>
+        <td>{{ transaction.price_per_share }}</td>
+        <td>{{ transaction.sell_price_per_share }}</td>
+        <td>-605,3140</td>
+        <td>-605,3140</td>
+      </tr>
+      {% endfor %} 
+    </tbody>
+  </table>
   {% endfor %}
-
-{% endblock content %} {% endcomment %}
+{% endblock content %}
