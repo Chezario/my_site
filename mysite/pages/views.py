@@ -35,7 +35,7 @@ def check_time(time_object: timedelta):
 def index(request):
     transactions = SecurityTransaction.objects.filter(is_on_dashboard=False)
     for transaction in transactions:
-        pass
+        transaction.result = (transaction.sell_price_per_share * transaction.sell_quantity) - (transaction.buy_price_per_share * transaction.buy_quantity)
     context = {
         'transactions': transactions,
     }
@@ -56,8 +56,8 @@ def dashboard(request):
         current_prices[transaction.security.name] = get_real_price(transaction.security.name)
     for transaction in transactions:
         transaction.current_price = current_prices.get(transaction.security.name, 0)
-        transaction.real_price = transaction.price_per_share * (1 + transaction.broker.fee)
-        transaction.price_to_zero = transaction.price_per_share * ((1 + transaction.broker.fee) / (1 - transaction.broker.fee))
+        transaction.real_price = transaction.buy_price_per_share * (1 + transaction.broker.fee)
+        transaction.price_to_zero = transaction.buy_price_per_share * ((1 + transaction.broker.fee) / (1 - transaction.broker.fee))
         transaction.percent =  transaction.real_price / 100
     context = {
         'transactions': transactions,

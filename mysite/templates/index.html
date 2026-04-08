@@ -13,13 +13,17 @@
       </thead>
     <tbody>
     {% for transaction in transactions %}
-    <tr>
+    {% if transaction.result > 0 %}
+    <tr class="table-success">
+    {% else %}
+    <tr class="table-danger">
+    {% endif %}
       <td>{{ transaction.id }}</td>
       <td>{{ transaction.security.name }}</td>
-      <td>{{ transaction.quantity }}</td>
-      <td>{{ transaction.price_per_share }}</td>
+      <td>{{ transaction.buy_quantity }}</td>
+      <td>{{ transaction.buy_price_per_share }}</td>
       <td>{{ transaction.sell_price_per_share }}</td>
-      <td>-605,3140</td>
+      <td>{{ transaction.result }}</td>
       <td>-605,3140</td>
     </tr>
     {% endfor %} 

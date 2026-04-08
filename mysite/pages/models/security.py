@@ -2,6 +2,14 @@ from django.db import models
 
 
 class Security(models.Model):
+    # Тип и категория
+    SECURITY_TYPES = [
+        ('STOCK', 'Акция'),
+        ('BOND', 'Облигация'),
+        ('ETF', 'ETF'),
+        ('DERIVATIVE', 'Дериватив'),
+        ('OTHER', 'Другое'),
+    ]
     # Идентификационные данные
     name = models.CharField(
         max_length=200,
@@ -19,36 +27,16 @@ class Security(models.Model):
         verbose_name='ISIN-код'
     )
 
-    # Тип и категория
-    SECURITY_TYPES = [
-        ('STOCK', 'Акция'),
-        ('BOND', 'Облигация'),
-        ('ETF', 'ETF'),
-        ('DERIVATIVE', 'Дериватив'),
-        ('OTHER', 'Другое'),
-    ]
     type = models.CharField(
         max_length=10,
         choices=SECURITY_TYPES,
         verbose_name='Тип ценной бумаги'
     )
-
-    # Стоимостные характеристики
-    face_value = models.DecimalField(
-        max_digits=10,
-        decimal_places=4,
-        verbose_name='Номинальная стоимость'
-    )
-    currency = models.CharField(
-        max_length=3,
-        default='RUB',
-        verbose_name='Валюта номинала'
-    )
     lot_size = models.PositiveIntegerField(
         default=1,
         verbose_name='Размер лота'
     )
-
+    
     # Даты
     issue_date = models.DateField(
         blank=True,
