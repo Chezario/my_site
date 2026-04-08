@@ -4,6 +4,7 @@ from django.utils.safestring import mark_safe
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
+from decimal import Decimal
 
 from .t_invest_utils import get_real_price
 from .models import SecurityTransaction
@@ -36,6 +37,7 @@ def index(request):
     transactions = SecurityTransaction.objects.filter(is_on_dashboard=False)
     for transaction in transactions:
         transaction.result = (transaction.sell_price_per_share * transaction.sell_quantity) - transaction.sell_fee - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
+        transaction.result_with_nalog = transaction.result * Decimal('0,87')
     context = {
         'transactions': transactions,
     }
