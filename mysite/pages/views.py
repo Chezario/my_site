@@ -64,7 +64,8 @@ def dashboard(request):
         transaction.percent =  transaction.real_price / 100
         if transaction.tmon_price_on_date:
             tmon_price = quotation_to_decimal(get_stock_price(TMON_FIGI))
-            transaction.tmon_result = tmon_price * transaction.buy_quantity + transaction.tmon_price_on_date * transaction.buy_quantity
+            tmon_count = transaction.real_price / transaction.tmon_price_on_date
+            transaction.tmon_result = tmon_price * tmon_count - transaction.tmon_price_on_date * tmon_count
         transaction.tmon_tod_price = quotation_to_decimal(get_stock_price(TMON_FIGI))
 
     context = {
