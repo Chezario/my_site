@@ -35,7 +35,7 @@ def check_time(time_object: timedelta):
 def index(request):
     transactions = SecurityTransaction.objects.filter(is_on_dashboard=False)
     for transaction in transactions:
-        transaction.result = (transaction.sell_price_per_share * transaction.sell_quantity) - transaction.sell_fee - (transaction.buy_price_per_share * transaction.buy_quantity) + transaction.buy_fee
+        transaction.result = (transaction.sell_price_per_share * transaction.sell_quantity) - transaction.sell_fee - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
     context = {
         'transactions': transactions,
     }
