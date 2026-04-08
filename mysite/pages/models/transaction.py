@@ -13,7 +13,6 @@ class SecurityTransaction(models.Model):
         help_text='Отметьте, чтобы товар/статья отображалась на дашборде'
     )
     transaction_date = models.DateTimeField(
-        auto_now=True,
         verbose_name='Дата и время операции'
     )
     security = models.ForeignKey(
