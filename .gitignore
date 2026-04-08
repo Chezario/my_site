@@ -25,7 +25,6 @@ __pycache__/
 Thumbs.db
 
 # Локальная статика
-static_dev
 db.sqlite3
 token.py
 test.py
