@@ -66,6 +66,7 @@ def dashboard(request):
             tmon_price = quotation_to_decimal(get_stock_price(TMON_FIGI))
             tmon_count = (transaction.real_price * transaction.buy_quantity) / transaction.tmon_price_on_date
             transaction.tmon_result = tmon_price * tmon_count - transaction.tmon_price_on_date * tmon_count
+        transaction.result = (current_prices[transaction.security.name] * transaction.buy_quantity) * Decimal('0.9992') - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
         transaction.tmon_tod_price = quotation_to_decimal(get_stock_price(TMON_FIGI))
 
     context = {
