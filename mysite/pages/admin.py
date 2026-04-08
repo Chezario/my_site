@@ -7,4 +7,3 @@ admin.site.register(Printers)
 admin.site.register(Security)
 admin.site.register(Broker)
 admin.site.register(SecurityTransaction)
-
