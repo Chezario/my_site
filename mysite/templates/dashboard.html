@@ -14,6 +14,7 @@
       <th>реальная цена продажи</th>
       <th>Выйти в 0</th>
       <th>Текущая цена</th>
+      <th>Результат для TMON</th>
       <th>изменение в % SHORT</th>
       <th>Прошло дней</th>
       <th>Результат LONG</th>
@@ -45,13 +46,14 @@
       <tr>
         <td>{{ transaction.security.name }}</td>
         <td>{{ transaction.transaction_date }}</td>
-        <td>{{ transaction.quantity }}</td>
+        <td>{{ transaction.buy_quantity }}</td>
         <td class="table-success">{{ transaction.buy_price_per_share }}</td>
         <td>{{ transaction.real_price|floatformat:4 }}</td>
         <td>нет данных</td>
         <td>{{ transaction.price_to_zero|floatformat:4 }}</td>
         <td class="table-success">{{ transaction.current_price }}</br>{{ transaction.percent }}</td>
-        <td>нет данных</td>
+        <td>{{ transaction.tmon_result }}</td>
+        <td>{{ transaction.tmon_tod_price }}</td>
         <td>нет данных</td>
         <td>нет данных</td>
         <td>нет данных</td>

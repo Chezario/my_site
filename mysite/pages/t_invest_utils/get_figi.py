@@ -31,7 +31,7 @@ def get_figi_by_ticker(ticker: str) -> dict:
         for element in response.instruments:
             if element.class_code == 'TQBR':
                 instrument = element
-                
+           
 
         return instrument.figi
 

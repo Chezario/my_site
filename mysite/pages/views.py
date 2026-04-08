@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 from decimal import Decimal
 
-from .t_invest_utils import get_real_price
+from .t_invest_utils import get_real_price, get_stock_price, quotation_to_decimal
 from .models import SecurityTransaction
 import subprocess
 import os
@@ -52,6 +52,7 @@ if __name__ == '__main__':
 
 @login_required
 def dashboard(request):
+    TMON_FIGI = 'TCS70A106DL2'
     transactions = SecurityTransaction.objects.filter(is_on_dashboard=True)
     current_prices = {}
     for transaction in transactions:
@@ -61,6 +62,11 @@ def dashboard(request):
         transaction.real_price = transaction.buy_price_per_share * (1 + transaction.broker.fee)
         transaction.price_to_zero = transaction.buy_price_per_share * ((1 + transaction.broker.fee) / (1 - transaction.broker.fee))
         transaction.percent =  transaction.real_price / 100
+        if transaction.tmon_price_on_date:
+            tmon_price = quotation_to_decimal(get_stock_price(TMON_FIGI))
+            transaction.tmon_result = tmon_price * transaction.buy_quantity + transaction.tmon_price_on_date * transaction.buy_quantity
+        transaction.tmon_tod_price = quotation_to_decimal(get_stock_price(TMON_FIGI))
+
     context = {
         'transactions': transactions,
         'current_prices': current_prices
