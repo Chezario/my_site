@@ -1,8 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-  {% for transaction in transactions%}
-   <h4>{{ transaction.security.name }} {{ transaction.current_price}}</h4>
-  {% endfor %}
 <table class="table table-striped table-hover table-bordered">
   <thead>
     <tr class="tableizer-firstrow">
@@ -51,7 +48,7 @@
         <td>{{ transaction.real_price|floatformat:4 }}</td>
         <td>нет данных</td>
         <td>{{ transaction.price_to_zero|floatformat:4 }}</td>
-        <td class="table-success">{{ transaction.current_price }}</br>{{ transaction.percent }}</td>
+        <td class="table-success">{{ transaction.current_price }}</br>{{ transaction.percent|floatformat:2 }}%</td>
         <td>{{ transaction.tmon_result|floatformat:4 }}</td>
         <td>{{ transaction.result|floatformat:4 }}</td>
         <td>{{ transaction.tmon_tod_price }}</td>

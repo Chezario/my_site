@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 from decimal import Decimal
 
-from .t_invest_utils import get_real_price, get_stock_price, quotation_to_decimal
+from .t_invest_utils import get_current_price, get_stock_price, quotation_to_decimal
 from .models import SecurityTransaction
 import subprocess
 import os
@@ -53,25 +53,22 @@ if __name__ == '__main__':
 @login_required
 def dashboard(request):
     TMON_FIGI = 'TCS70A106DL2'
-    transactions = SecurityTransaction.objects.filter(is_on_dashboard=True)
-    current_prices = {}
+    transactions = SecurityTransaction.objects.filter(is_on_dashboard=True)  # Получение записей из базы данных
+
     for transaction in transactions:
-        current_prices[transaction.security.name] = get_real_price(transaction.security.name)
-    for transaction in transactions:
-        transaction.current_price = current_prices.get(transaction.security.name, 0)
+        transaction.current_price = get_current_price(transaction.security.name) # Добавление в объект из базы данных текущей цены
         transaction.real_price = transaction.buy_price_per_share * (1 + transaction.broker.fee)
         transaction.price_to_zero = transaction.buy_price_per_share * ((1 + transaction.broker.fee) / (1 - transaction.broker.fee))
-        transaction.percent =  transaction.real_price / 100
+        transaction.percent = (transaction.current_price - transaction.buy_price_per_share) / (transaction.buy_price_per_share / 100)
         if transaction.tmon_price_on_date:
             tmon_price = quotation_to_decimal(get_stock_price(TMON_FIGI))
             tmon_count = (transaction.real_price * transaction.buy_quantity) / transaction.tmon_price_on_date
             transaction.tmon_result = tmon_price * tmon_count - transaction.tmon_price_on_date * tmon_count
-        transaction.result = (current_prices[transaction.security.name] * transaction.buy_quantity) * Decimal('0.9992') - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
+        transaction.result = (transaction.current_price * transaction.buy_quantity) * Decimal('0.9992') - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
         transaction.tmon_tod_price = quotation_to_decimal(get_stock_price(TMON_FIGI))
 
     context = {
         'transactions': transactions,
-        'current_prices': current_prices
     }
     # content[name2] = {
     #     'name': name2,
