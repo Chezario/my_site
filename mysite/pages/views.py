@@ -37,7 +37,10 @@ def index(request):
     transactions = SecurityTransaction.objects.filter(is_on_dashboard=False)
     for transaction in transactions:
         transaction.result = (transaction.sell_price_per_share * transaction.sell_quantity) - transaction.sell_fee - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
-        transaction.result_with_nalog = transaction.result * Decimal('0.87')
+        if transaction.result > 0:
+            transaction.result_with_nalog = transaction.result * Decimal('0.87')
+        else:
+            transaction.result_with_nalog = transaction.result
     context = {
         'transactions': transactions,
     }
