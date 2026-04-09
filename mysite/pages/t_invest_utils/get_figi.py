@@ -9,17 +9,6 @@ def get_figi_by_ticker(ticker: str) -> dict:
 
     client_obj = Client(TOKEN)
     
-    instrument = list()
-    """
-    Находит инструмент по тикеру и возвращает его данные, включая FIGI.
-
-    Args:
-        ticker (str): Тикер инструмента (например, "SBER", "GAZP")
-
-
-    Returns:
-        dict: Словарь с информацией об инструменте
-    """
     with client_obj as client:
         # Выполняем поиск по тикеру
         response = client.instruments.find_instrument(query=ticker)
@@ -30,8 +19,4 @@ def get_figi_by_ticker(ticker: str) -> dict:
         # Берём первый найденный инструмент (обычно самый релевантный)
         for element in response.instruments:
             if element.ticker == ticker and element.class_code == 'TQBR':
-                instrument = element
-           
-
-        return instrument.figi
-
+                return element.figi
