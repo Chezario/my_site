@@ -48,7 +48,11 @@
         <td>{{ transaction.real_price|floatformat:4 }}</td>
         <td>нет данных</td>
         <td>{{ transaction.price_to_zero|floatformat:4 }}</td>
-        <td class="table-success">{{ transaction.current_price }}</br>{{ transaction.percent|floatformat:2 }}%</td>
+        {% if transaction.current_price > transaction.price_to_zero %}
+          <td class="table-success">{{ transaction.current_price }}</br>{{ transaction.percent|floatformat:2 }}%</td>
+        {% else %}
+          <td class="table-danger">{{ transaction.current_price }}</br>{{ transaction.percent|floatformat:2 }}%</td>
+        {% endif %}
         <td>{{ transaction.tmon_result|floatformat:4 }}</td>
         <td>{{ transaction.result|floatformat:4 }}</td>
         <td>{{ transaction.tmon_tod_price }}</td>
