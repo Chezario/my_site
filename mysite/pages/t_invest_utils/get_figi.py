@@ -29,7 +29,7 @@ def get_figi_by_ticker(ticker: str) -> dict:
 
         # Берём первый найденный инструмент (обычно самый релевантный)
         for element in response.instruments:
-            if element.class_code == 'TQBR':
+            if element.ticker == ticker and element.class_code == 'TQBR':
                 instrument = element
            
 

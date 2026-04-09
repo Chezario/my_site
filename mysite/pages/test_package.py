@@ -1,7 +1,7 @@
 from t_invest_utils import *
 
-tickers = ['SBER', 'VTBR']
+tickers = ['T']
 
 for ticker in tickers:
-    print(get_real_price(ticker))
+    print(get_current_price(ticker))
 
