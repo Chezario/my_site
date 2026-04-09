@@ -60,6 +60,8 @@ class SecurityTransaction(models.Model):
     sell_fee = models.DecimalField(
         max_digits=10,
         decimal_places=4,
+        blank=True,
+        null=True,
         verbose_name='Комиссия продажи'
     )
     broker = models.ForeignKey(

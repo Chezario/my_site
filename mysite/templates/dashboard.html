@@ -8,36 +8,12 @@
       <th>Количество</th>
       <th>Начальная цена</th>
       <th>Реальная цена покупки</th>
-      <th>реальная цена продажи</th>
       <th>Выйти в 0</th>
       <th>Текущая цена</th>
       <th>Результат для TMON</th>
       <th>Результат для суммы</th>
-      <th>изменение в % SHORT</th>
-      <th>Прошло дней</th>
-      <th>Результат LONG</th>
-      <th>Результат SHORT</th>
-      <th>Результат для суммы с учетом налога</th></tr></thead>
+      <th>Цена TMON</th></tr></thead>
       <tbody>
-      
-
-      {% comment %} <tr>
-        <td>{{ token }}</td>
-        <td></td>
-        <td></td>
-        <td class="table-success"></td>
-        <td></td>
-        <td>86,3559</td>
-        <td></td>
-        <td class="table-success"></td>
-        <td>-0,30%</td>
-        <td>-0,02%</td>
-        <td>1</td>
-        <td>-0,26</td>
-        <td>-0,01</td>
-        <td>-605,3140</td>
-        <td>-605,3140</td>
-      </tr> {% endcomment %}
 
     {% for transaction in transactions %}
       <tr>
@@ -46,7 +22,6 @@
         <td>{{ transaction.buy_quantity }}</td>
         <td class="table-success">{{ transaction.buy_price_per_share }}</td>
         <td>{{ transaction.real_price|floatformat:4 }}</td>
-        <td>нет данных</td>
         <td>{{ transaction.price_to_zero|floatformat:4 }}</td>
         {% if transaction.current_price > transaction.price_to_zero %}
           <td class="table-success">{{ transaction.current_price }}</br>{{ transaction.percent|floatformat:2 }}%</td>
@@ -56,10 +31,6 @@
         <td>{{ transaction.tmon_result|floatformat:4 }}</td>
         <td>{{ transaction.result|floatformat:4 }}</td>
         <td>{{ transaction.tmon_tod_price }}</td>
-        <td>нет данных</td>
-        <td>нет данных</td>
-        <td>нет данных</td>
-        <td>нет данных</td>
       </tr>
       {% endfor %} 
     </tbody>
