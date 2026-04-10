@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    {% for element in data %}
+        {{ element }}
+    {% endfor %}
+</div>
+{% endblock %}

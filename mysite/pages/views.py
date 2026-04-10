@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from datetime import datetime, timedelta
 from django.utils.safestring import mark_safe
 from django.contrib.auth.decorators import login_required
@@ -11,6 +12,7 @@ from .models import SecurityTransaction
 import subprocess
 import os
 from .token import INVEST_TOKEN
+from .forms import MyForm
 
 def plural_form(n, forms=('день', 'дня', 'дней')):
     # n = abs(n) % 100
@@ -45,16 +47,12 @@ def dashboard(request):
         'transactions': transactions,
     }
 
-    return render(request, 'index.html', context=context)
-
-
-if __name__ == '__main__':
-    for i in range(11):
-        print(plural_form(i))
+    return render(request, 'dashboard.html', context=context)
 
 
 @login_required
 def index(request):
+    
     TMON_FIGI = 'TCS70A106DL2'
     transactions = SecurityTransaction.objects.filter(is_on_dashboard=True)  # Получение записей из базы данных
 
@@ -69,6 +67,7 @@ def index(request):
             tmon_count = (transaction.real_price * transaction.buy_quantity) / transaction.tmon_price_on_date
             transaction.tmon_result = tmon_price * tmon_count - transaction.tmon_price_on_date * tmon_count
         transaction.result = (transaction.current_price * transaction.buy_quantity) * Decimal('0.9992') - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
+        transaction.desired_profit = (transaction.planned_sell_price * transaction.buy_quantity) * Decimal('0.9992') - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
         transaction.tmon_tod_price = quotation_to_decimal(get_stock_price(TMON_FIGI))
 
     context = {
@@ -80,27 +79,28 @@ def index(request):
     #     'start_price': '315,86',
     #     'current_price': get_real_price(name2)
     # }
-    return render(request, 'dashboard.html', context)
+    return render(request, 'index.html', context)
 
 
-# @login_required
-# def dashboard(request):
-#     transactions = SecurityTransaction.objects.all()
-#     current_prices = {}
-#     # for transaction in transactions:
-#     #     current_prices[transaction.security.name] = get_real_price(transaction.security.name)
-#     for transaction in transactions:
-#         transaction.current_price = current_prices.get(transaction.security.name, 0)
-#         transaction.real_price = transaction.price_per_share * (1 + transaction.broker.fee)
-#         transaction.price_to_zero = transaction.price_per_share * ((1 + transaction.broker.fee) / (1 - transaction.broker.fee))
-#     context = {
-#         'transactions': transactions,
-#         'current_prices': current_prices
-#     }
-#     # content[name2] = {
-#     #     'name': name2,
-#     #     'date': '2026-03-23',
-#     #     'start_price': '315,86',
-#     #     'current_price': get_real_price(name2)
-#     # }
-#     return render(request, 'dashboard.html', context)
+@login_required
+def my_form_view(request):
+    if request.method == 'POST':
+        form = MyForm(request.POST)  # Передаём данные POST в форму
+        if form.is_valid():
+            # Получаем данные из формы
+            price = form.cleaned_data['price']
+            date = form.cleaned_data['date']
+            
+
+            # Здесь ваша бизнес‑логика (сохранение в БД, отправка email и т. д.)
+            print(f"Получены данные: {price}, {data}")
+            context = {
+                'data': [price, date]
+            }
+
+            # Перенаправление после успешной отправки
+            return render(request, 'success.html', context=context)
+    else:
+        form = MyForm()  # Пустая форма для GET‑запроса
+
+    return render(request, 'forms/my_form.html', {'form': form})

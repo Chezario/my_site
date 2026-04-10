@@ -1,40 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
-<table class="table table-responsive table-striped table-hover table-bordered">
-  <thead>
-    <tr class="tableizer-firstrow">
-      <th>название</th>
-      <th>Дата операции</th>
-      <th>Сумма</th>
-      <th>Количество</th>
-      <th>Начальная цена</th>
-      <th>Реальная цена покупки</th>
-      <th>Выйти в 0</th>
-      <th>Текущая цена</th>
-      <th>Результат для TMON</th>
-      <th>Результат для суммы</th>
-      <th>Цена TMON</th></tr></thead>
-      <tbody>
-
+  <table class="table table-striped table-hover table-bordered">
+    <thead>
+      <tr class="tableizer-firstrow">
+        <th>id</th>
+        <th>Название</th>
+        <th>Количество</th>
+        <th>Начальная цена</th>
+        <th>Цена продажи</th>
+        <th>Результат для суммы</th>
+        <th>Результат для суммы с учетом налога</th></tr>
+      </thead>
+    <tbody>
     {% for transaction in transactions %}
-      <tr>
-        <td>{{ transaction.security.name }}</td>
-        <td>{{ transaction.transaction_date }}</td>
-        <td>{{ transaction.sum }}</td>
-        <td>{{ transaction.buy_quantity }}</td>
-        <td class="table-success">{{ transaction.buy_price_per_share }}</td>
-        <td>{{ transaction.real_price|floatformat:4 }}</td>
-        <td>{{ transaction.price_to_zero|floatformat:4 }}</td>
-        {% if transaction.current_price > transaction.price_to_zero %}
-          <td class="table-success">{{ transaction.current_price }}</br>{{ transaction.percent|floatformat:2 }}%</td>
-        {% else %}
-          <td class="table-danger">{{ transaction.current_price }}</br>{{ transaction.percent|floatformat:2 }}%</td>
-        {% endif %}
-        <td>{{ transaction.tmon_result|floatformat:4 }}</td>
-        <td>{{ transaction.result|floatformat:4 }}</td>
-        <td>{{ transaction.tmon_tod_price }}</td>
-      </tr>
-      {% endfor %} 
+    {% if transaction.result > 0 %}
+    <tr class="table-success">
+    {% else %}
+    <tr class="table-danger">
+    {% endif %}
+      <td>{{ transaction.id }}</td>
+      <td>{{ transaction.security.name }}</td>
+      <td>{{ transaction.buy_quantity }}</td>
+      <td>{{ transaction.buy_price_per_share }}</td>
+      <td>{{ transaction.sell_price_per_share }}</td>
+      <td>{{ transaction.result }}</td>
+      <td>{{ transaction.result_with_nalog }}</td>
+    </tr>
+    {% endfor %} 
     </tbody>
   </table>
 {% endblock content %}
