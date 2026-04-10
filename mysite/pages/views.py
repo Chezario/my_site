@@ -63,6 +63,7 @@ def dashboard(request):
         transaction.real_price = transaction.buy_price_per_share * (1 + transaction.broker.fee)
         transaction.price_to_zero = transaction.buy_price_per_share * ((1 + transaction.broker.fee) / (1 - transaction.broker.fee))
         transaction.percent = (transaction.current_price - transaction.price_to_zero) / (transaction.price_to_zero / 100)
+        transaction.sum = transaction.buy_price_per_share * transaction.buy_quantity
         if transaction.tmon_price_on_date:
             tmon_price = quotation_to_decimal(get_stock_price(TMON_FIGI))
             tmon_count = (transaction.real_price * transaction.buy_quantity) / transaction.tmon_price_on_date

@@ -5,6 +5,7 @@
     <tr class="tableizer-firstrow">
       <th>название</th>
       <th>Дата операции</th>
+      <th>Сумма</th>
       <th>Количество</th>
       <th>Начальная цена</th>
       <th>Реальная цена покупки</th>
@@ -19,6 +20,7 @@
       <tr>
         <td>{{ transaction.security.name }}</td>
         <td>{{ transaction.transaction_date }}</td>
+        <td>{{ transaction.sum }}</td>
         <td>{{ transaction.buy_quantity }}</td>
         <td class="table-success">{{ transaction.buy_price_per_share }}</td>
         <td>{{ transaction.real_price|floatformat:4 }}</td>
