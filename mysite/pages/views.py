@@ -33,7 +33,7 @@ def check_time(time_object: timedelta):
 
 
 @login_required
-def index(request):
+def dashboard(request):
     transactions = SecurityTransaction.objects.filter(is_on_dashboard=False)
     for transaction in transactions:
         transaction.result = (transaction.sell_price_per_share * transaction.sell_quantity) - transaction.sell_fee - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
@@ -54,7 +54,7 @@ if __name__ == '__main__':
 
 
 @login_required
-def dashboard(request):
+def index(request):
     TMON_FIGI = 'TCS70A106DL2'
     transactions = SecurityTransaction.objects.filter(is_on_dashboard=True)  # Получение записей из базы данных
 
