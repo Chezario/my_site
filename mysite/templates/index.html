@@ -33,7 +33,7 @@
         {% endif %}
         <td>{{ transaction.tmon_result|floatformat:4 }}</td>
         <td>{{ transaction.result|floatformat:4 }}</td>
-        <td>{{ transaction.desired_profit|floatformat:2 }}</br>{{ transaction.planned_sell_price|floatformat:2 }}({{ transaction.desired_profit }})</td>
+        <td>{{ transaction.desired_profit|floatformat:2 }}</br>{{ transaction.planned_sell_price|floatformat:2 }}({{ transaction.desired_profit|floatformat:2 }})</td>
         <td>{{ transaction.tmon_tod_price }}</td>
       </tr>
       {% endfor %} 
