@@ -52,6 +52,10 @@ def dashboard(request):
 
 @login_required
 def index(request):
+    tfoot_data = {
+        'current_summ': 0,
+        'desired_summ': 0
+    }
     
     TMON_FIGI = 'TCS70A106DL2'
     transactions = SecurityTransaction.objects.filter(is_on_dashboard=True)  # Получение записей из базы данных
@@ -67,12 +71,15 @@ def index(request):
             tmon_count = (transaction.real_price * transaction.buy_quantity) / transaction.tmon_price_on_date
             transaction.tmon_result = tmon_price * tmon_count - transaction.tmon_price_on_date * tmon_count
         transaction.result = (transaction.current_price * transaction.buy_quantity) * Decimal('0.9992') - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
+        tfoot_data['current_summ'] += transaction.result
         transaction.desired_profit = (transaction.planned_sell_price * transaction.buy_quantity) * Decimal('0.9992') - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
+        tfoot_data['desired_summ'] += transaction.desired_profit
         transaction.percent_for_desired = (transaction.planned_sell_price - transaction.price_to_zero) / (transaction.price_to_zero / 100)
         transaction.tmon_tod_price = quotation_to_decimal(get_stock_price(TMON_FIGI))
 
     context = {
         'transactions': transactions,
+        'tfoot_data': tfoot_data
     }
     # content[name2] = {
     #     'name': name2,

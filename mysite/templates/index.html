@@ -33,10 +33,26 @@
         {% endif %}
         <td>{{ transaction.tmon_result|floatformat:4 }}</td>
         <td>{{ transaction.result|floatformat:4 }}</td>
-        <td>{{ transaction.desired_profit|floatformat:2 }}</br>{{ transaction.planned_sell_price|floatformat:2 }}({{ transaction.percent_for_desired|floatformat:2 }})</td>
+        <td>{{ transaction.desired_profit|floatformat:2 }}</br>{{ transaction.planned_sell_price|floatformat:2 }}({{ transaction.desired_profit|floatformat:2 }})</td>
         <td>{{ transaction.tmon_tod_price }}</td>
       </tr>
       {% endfor %} 
     </tbody>
+    <tfoot>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><b>Сумма:</b></td>
+        <td>{{ tfoot_data.current_summ|floatformat:2 }}</td>
+        <td>{{ tfoot_data.desired_summ|floatformat:2 }}</td>
+        <td></td>
+      </tr>
+    </tfoot>
   </table>
 {% endblock content %}
