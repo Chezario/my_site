@@ -54,7 +54,8 @@ def dashboard(request):
 def index(request):
     tfoot_data = {
         'current_summ': 0,
-        'desired_summ': 0
+        'desired_summ': 0,
+        'tmon_summ': 0
     }
     
     TMON_FIGI = 'TCS70A106DL2'
@@ -70,6 +71,7 @@ def index(request):
             tmon_price = quotation_to_decimal(get_stock_price(TMON_FIGI))
             tmon_count = (transaction.real_price * transaction.buy_quantity) / transaction.tmon_price_on_date
             transaction.tmon_result = tmon_price * tmon_count - transaction.tmon_price_on_date * tmon_count
+            tfoot_data['tmon_summ'] += transaction.tmon_result
         transaction.result = (transaction.current_price * transaction.buy_quantity) * Decimal('0.9992') - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
         transaction.desired_profit = (transaction.planned_sell_price * transaction.buy_quantity) * Decimal('0.9992') - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
         transaction.percent_for_desired = (transaction.planned_sell_price - transaction.price_to_zero) / (transaction.price_to_zero / 100)
