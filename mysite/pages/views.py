@@ -56,7 +56,7 @@ def index(request):
         'current_summ': 0,
         'desired_summ': 0,
         'tmon_summ': 0,
-        'quantuty': 0
+        'quantity': 0
     }
     
     TMON_FIGI = 'TCS70A106DL2'
