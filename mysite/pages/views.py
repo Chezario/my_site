@@ -55,7 +55,8 @@ def index(request):
     tfoot_data = {
         'current_summ': 0,
         'desired_summ': 0,
-        'tmon_summ': 0
+        'tmon_summ': 0,
+        'quantuty': 0
     }
     
     TMON_FIGI = 'TCS70A106DL2'
@@ -78,6 +79,7 @@ def index(request):
         transaction.tmon_tod_price = quotation_to_decimal(get_stock_price(TMON_FIGI))
         tfoot_data['current_summ'] += transaction.result
         tfoot_data['desired_summ'] += transaction.desired_profit
+        tfoot_data['quantity'] += transaction.buy_quantity
 
     context = {
         'transactions': transactions,
