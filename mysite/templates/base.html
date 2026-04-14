@@ -8,7 +8,7 @@
     <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
     <title>{% block title %}Главная страница{% endblock title %}</title>
   </head>
-  <body>
+  <body class="bg-dark">
     <div class="container">
       {% include "includes/header.html" %}
       {% block content %}Это главная страница{% endblock content %}
