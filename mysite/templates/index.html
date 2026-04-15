@@ -1,9 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
+
+
+
+
+
 <table class="table table-responsive table-striped table-hover table-bordered table-dark">
   <thead>
     <tr class="tableizer-firstrow">
-      <th>название</th>
+      <th>
+        <form method="get" action="">
+          <div>
+            <select name="category" id="category-filter" onchange="this.form.submit()">
+              <option value="">фильтр</option>
+              {% for category in categories %}
+                <option value="{{ category }}"
+                  {% if selected_category == category %}selected{% endif %}>
+                    {{ category }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        </form></br>
+        Название</th>
       <th>Дата операции</th>
       <th>Сумма</th>
       <th>Количество</th>

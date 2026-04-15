@@ -52,15 +52,19 @@ def dashboard(request):
 
 @login_required
 def index(request):
+    TMON_FIGI = 'TCS70A106DL2'
     tfoot_data = {
         'current_summ': 0,
         'desired_summ': 0,
         'tmon_summ': 0,
         'quantity': 0
     }
-    
-    TMON_FIGI = 'TCS70A106DL2'
-    transactions = SecurityTransaction.objects.filter(is_on_dashboard=True, user=request.user)  # Получение записей из базы данных
+    stock_filter = request.GET.get('category')
+    categories = set(SecurityTransaction.objects.values_list('security__name', flat=True))
+    if stock_filter:
+        transactions = SecurityTransaction.objects.filter(is_on_dashboard=True, user=request.user, security__name=stock_filter)  # Получение записей из базы данных
+    else:
+        transactions = SecurityTransaction.objects.filter(is_on_dashboard=True, user=request.user)  # Получение записей из базы данных
 
     for transaction in transactions:
         transaction.current_price = get_current_price(transaction.security.ticker) # Добавление в объект из базы данных текущей цены
@@ -83,7 +87,8 @@ def index(request):
 
     context = {
         'transactions': transactions,
-        'tfoot_data': tfoot_data
+        'tfoot_data': tfoot_data,
+        'categories': categories,
     }
     # content[name2] = {
     #     'name': name2,
