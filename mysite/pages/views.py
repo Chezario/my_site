@@ -60,7 +60,7 @@ def index(request):
     }
     
     TMON_FIGI = 'TCS70A106DL2'
-    transactions = SecurityTransaction.objects.filter(is_on_dashboard=True)  # Получение записей из базы данных
+    transactions = SecurityTransaction.objects.filter(is_on_dashboard=True, user=request.user)  # Получение записей из базы данных
 
     for transaction in transactions:
         transaction.current_price = get_current_price(transaction.security.ticker) # Добавление в объект из базы данных текущей цены
