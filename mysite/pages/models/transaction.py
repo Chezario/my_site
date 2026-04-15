@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class SecurityTransaction(models.Model):
@@ -76,6 +77,7 @@ class SecurityTransaction(models.Model):
         null=True,
         verbose_name='Планируемая цена продажи'
     )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_data')
 
     class Meta:
         verbose_name = 'Операция с ценной бумагой'
