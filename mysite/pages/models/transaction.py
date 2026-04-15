@@ -77,7 +77,13 @@ class SecurityTransaction(models.Model):
         null=True,
         verbose_name='Планируемая цена продажи'
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_data')
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='user_data',
+        blank=True,
+        null=True,
+    )
 
     class Meta:
         verbose_name = 'Операция с ценной бумагой'
