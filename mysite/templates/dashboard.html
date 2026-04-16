@@ -42,5 +42,16 @@
     </tr>
     {% endfor %} 
     </tbody>
+        <tfoot>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>{{ tfoot_data.quantity }}</td>
+        <td></td>
+        <td></td>
+        <td>{{ tfoot_data.result_summ }}</td>
+        <td>{{ tfoot_data.result_with_nalog_summ }}</td>
+      </tr>
+    </tfoot>
   </table>
 {% endblock content %}

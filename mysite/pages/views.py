@@ -15,9 +15,6 @@ from .token import INVEST_TOKEN
 from .forms import MyForm
 
 def plural_form(n, forms=('день', 'дня', 'дней')):
-    # n = abs(n) % 100
-    # n1 = n % 10
-    
     if str(n)[-1] == '1':
         return forms[0]
     if 1 < int(str(n)[-1]) < 5:
@@ -36,6 +33,11 @@ def check_time(time_object: timedelta):
 
 @login_required
 def dashboard(request):
+    tfoot_data = {
+        'result_summ': 0,
+        'result_with_nalog_summ': 0,
+        'quantity': 0
+    }
     stock_filter = request.GET.get('category')
     categories = set(SecurityTransaction.objects.values_list('security__name', flat=True))
     if stock_filter:
@@ -49,9 +51,13 @@ def dashboard(request):
             transaction.result_with_nalog = transaction.result * Decimal('0.87')
         else:
             transaction.result_with_nalog = transaction.result
+        tfoot_data['result_summ'] += transaction.result
+        tfoot_data['result_with_nalog_summ'] += transaction.result
+        tfoot_data['quantity'] += transaction.buy_quantity
     context = {
         'transactions': transactions,
         'categories': categories,
+        'tfoot_data': tfoot_data,
     }
 
     return render(request, 'dashboard.html', context=context)
