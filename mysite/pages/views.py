@@ -52,7 +52,7 @@ def dashboard(request):
         else:
             transaction.result_with_nalog = transaction.result
         tfoot_data['result_summ'] += transaction.result
-        tfoot_data['result_with_nalog_summ'] += transaction.result
+        tfoot_data['result_with_nalog_summ'] += transaction.result_with_nalog
         tfoot_data['quantity'] += transaction.buy_quantity
     context = {
         'transactions': transactions,
