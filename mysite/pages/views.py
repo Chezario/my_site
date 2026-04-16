@@ -134,6 +134,7 @@ def my_form_view(request):
     return render(request, 'forms/my_form.html', {'form': form})
 
 
+@login_required
 def operation_details(request, operation_id):
     operation = get_object_or_404(SecurityTransaction, id=operation_id)
     print(operation)
