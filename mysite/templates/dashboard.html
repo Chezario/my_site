@@ -4,7 +4,21 @@
     <thead>
       <tr class="tableizer-firstrow">
         <th>id</th>
-        <th>Название</th>
+        <th>
+          <form method="get" action="">
+          <div>
+            <select name="category" id="category-filter" onchange="this.form.submit()">
+              <option value="">фильтр</option>
+              {% for category in categories %}
+                <option value="{{ category }}"
+                  {% if selected_category == category %}selected{% endif %}>
+                    {{ category }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        </form></br>
+          Название</th>
         <th>Количество</th>
         <th>Начальная цена</th>
         <th>Цена продажи</th>

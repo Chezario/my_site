@@ -36,7 +36,13 @@ def check_time(time_object: timedelta):
 
 @login_required
 def dashboard(request):
-    transactions = SecurityTransaction.objects.filter(is_on_dashboard=False)
+    stock_filter = request.GET.get('category')
+    categories = set(SecurityTransaction.objects.values_list('security__name', flat=True))
+    if stock_filter:
+        transactions = SecurityTransaction.objects.filter(is_on_dashboard=False, user=request.user, security__name=stock_filter)  # Получение записей из базы данных
+    else:
+        transactions = SecurityTransaction.objects.filter(is_on_dashboard=False, user=request.user)  # Получение записей из базы данных
+
     for transaction in transactions:
         transaction.result = (transaction.sell_price_per_share * transaction.sell_quantity) - transaction.sell_fee - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
         if transaction.result > 0:
@@ -45,6 +51,7 @@ def dashboard(request):
             transaction.result_with_nalog = transaction.result
     context = {
         'transactions': transactions,
+        'categories': categories,
     }
 
     return render(request, 'dashboard.html', context=context)
