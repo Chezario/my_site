@@ -10,3 +10,5 @@ urlpatterns = [
     path('form/', views.my_form_view, name='my_form'),
     path('<int:operation_id>/', views.operation_details, name='details'),
 ]
+
+handler404 = 'pages.views.custom_404'
