@@ -9,8 +9,6 @@ from decimal import Decimal
 
 from .t_invest_utils import get_current_price, get_stock_price, quotation_to_decimal
 from .models import SecurityTransaction
-import subprocess
-import os
 from .token import INVEST_TOKEN
 from .forms import MyForm
 
@@ -134,3 +132,12 @@ def my_form_view(request):
         form = MyForm()  # Пустая форма для GET‑запроса
 
     return render(request, 'forms/my_form.html', {'form': form})
+
+
+def operation_details(request, operation_id):
+    operation = get_object_or_404(SecurityTransaction, id=operation_id)
+    print(operation)
+    context = {
+        'operation': operation
+    }
+    return render(request, 'operation.html', context)
