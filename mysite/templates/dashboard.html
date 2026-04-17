@@ -32,7 +32,7 @@
     {% else %}
     <tr class="table-danger">
     {% endif %}
-      <td><a href="{% url 'transactions:details' transaction.id %}">{{ transaction.id }}</a></td>
+      <td><a href="{% url 'pages:details' transaction.id %}">{{ transaction.id }}</a></td>
       <td>{{ transaction.security.name }}</td>
       <td>{{ transaction.buy_quantity }}</td>
       <td>{{ transaction.buy_price_per_share }}</td>
