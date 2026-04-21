@@ -8,9 +8,9 @@ from django.utils import timezone
 from decimal import Decimal
 
 from .t_invest_utils import get_current_price, get_stock_price, quotation_to_decimal
-from .models import SecurityTransaction
+from .models import SecurityTransaction, UploadedFile
 from .token import INVEST_TOKEN
-from .forms import MyForm
+from .forms import MyForm, UploadFileForm
 
 def plural_form(n, forms=('день', 'дня', 'дней')):
     if str(n)[-1] == '1':
@@ -146,3 +146,18 @@ def operation_details(request, operation_id):
 
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
+
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('pages:file_list')
+    else:
+        form = UploadFileForm()
+    return render(request, 'upload.html', {'form': form})
+
+def file_list(request):
+    files = UploadedFile.objects.all()
+    return render(request, 'file_list.html', {'files': files})

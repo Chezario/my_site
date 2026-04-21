@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.admin.widgets import AdminDateWidget
+from .models import UploadedFile
 
 
 class MyForm(forms.Form):
@@ -12,3 +13,9 @@ class MyForm(forms.Form):
         # required=False
         widget=AdminDateWidget(),
     )
+
+
+class UploadFileForm(forms.ModelForm):
+    class Meta:
+        model = UploadedFile
+        fields = ['title', 'file']

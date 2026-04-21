@@ -9,6 +9,8 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('form/', views.my_form_view, name='my_form'),
     path('<int:operation_id>/', views.operation_details, name='details'),
+    path('upload/', views.upload_file, name='upload_file'),
+    path('files/', views.file_list, name='file_list'),
 ]
 
 handler404 = 'pages.views.custom_404'

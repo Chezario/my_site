@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список файлов</title>
+</head>
+<body>
+    <h1>Загруженные файлы</h1>
+    <ul>
+        {% for file in files %}
+        <li>
+            <a href="{{ file.file.url }}" target="_blank">{{ file.title }}</a>
+            (загружен {{ file.uploaded_at }})
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'pages:upload_file' %}">Загрузить новый файл</a>
+</body>
+</html>
