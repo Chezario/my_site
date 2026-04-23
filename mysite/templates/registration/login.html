@@ -1,50 +1,7 @@
-<!doctype html>
-<html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/vendor/bootstrap.min.css' %}">
-    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
-    <title>Вход</title>
-  </head>
-	
-	<!-- <div class="card mb-3" style="width: 18rem;">
-		
-		
-		{% if form.errors %}
-		<p>Неверное имя пользователя или пароль. Попробуйте ещё раз.</p>
-		{% endif %}
-		
-		{% if next %}
-		{% if user.is_authenticated %}
-		<p>У вашей учётной записи нет доступа к этой странице. Войдите с другой учётной записью.</p>
-		{% else %}
-		<p>Пожалуйста, войдите, чтобы получить доступ.</p>
-		{% endif %}
-		{% endif %}
-		
-		
-		<form method="post" action="{% url 'login' %}">
-			{% csrf_token %}
-			<table>
-				<tr>
-					<td>{{ form.username.label_tag }}</td>
-					<td>{{ form.username }}</td>
-				</tr>
-				<tr>
-					<td>{{ form.password.label_tag }}</td>
-					<td>{{ form.password }}</td>
-				</tr>
-			</table>
-			<input type="submit" value="Войти" />
-			<input type="hidden" name="next" value="{{ next }}" />
-		</form>
-	</div>
-	
-</div> -->
-
-<div class="container">
+{% extends 'base.html' %}
+{% block title %}Авторизация{% endblock title %}
+{% block content %}
+<div class="container text-white">
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="card">
@@ -84,6 +41,4 @@
   </div>
 </div>
 
-
-</body>
-</html>
+{% endblock content %}
