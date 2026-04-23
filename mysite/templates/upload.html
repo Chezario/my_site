@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends 'base.html' %}
+{% block title %}Загрузка файла{% endblock title %}
+{% block content %}
     <title>Загрузка файла</title>
-</head>
-<body>
-    <h1>Загрузить файл</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Загрузить</button>
-    </form>
-    <a href="{% url 'pages:file_list' %}">Список файлов</a>
-</body>
-</html>
+
+<h1>Загрузить файл</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Загрузить</button>
+</form>
+<a href="{% url 'pages:file_list' %}">Список файлов</a>
+
+{% endblock content %}
