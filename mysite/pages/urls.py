@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LogoutView
 from . import views
 
 app_name = 'pages'
@@ -12,7 +13,7 @@ urlpatterns = [
     path('<int:operation_id>/', views.operation_details, name='details'),
     path('upload/', views.upload_file, name='upload_file'),
     path('files/', views.file_list, name='file_list'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
 ]
 
 handler404 = 'pages.views.custom_404'
