@@ -69,7 +69,8 @@ def index(request):
         'current_summ': 0,
         'desired_summ': 0,
         'tmon_summ': 0,
-        'quantity': 0
+        'quantity': 0,
+        'buy_summ': 0,
     }
     stock_filter = request.GET.get('category')
     categories = set(SecurityTransaction.objects.values_list('security__name', flat=True))
@@ -98,6 +99,7 @@ def index(request):
         tfoot_data['current_summ'] += transaction.result
         tfoot_data['desired_summ'] += transaction.desired_profit
         tfoot_data['quantity'] += transaction.buy_quantity
+        tfoot_data['buy_summ'] += transaction.sum
 
     context = {
         'transactions': transactions,
