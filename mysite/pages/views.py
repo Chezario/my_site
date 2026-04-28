@@ -71,6 +71,7 @@ def index(request):
         'tmon_summ': 0,
         'quantity': 0,
         'buy_summ': 0,
+        'calculate_price': 0,
     }
     stock_filter = request.GET.get('category')
     categories = set(SecurityTransaction.objects.values_list('security__name', flat=True))
@@ -101,17 +102,13 @@ def index(request):
         tfoot_data['quantity'] += transaction.buy_quantity
         tfoot_data['buy_summ'] += transaction.sum
 
+    tfoot_data['calculate_price'] = tfoot_data['buy_summ'] / tfoot_data['quantity']
     context = {
         'transactions': transactions,
         'tfoot_data': tfoot_data,
         'categories': categories,
     }
-    # content[name2] = {
-    #     'name': name2,
-    #     'date': '2026-03-23',
-    #     'start_price': '315,86',
-    #     'current_price': get_real_price(name2)
-    # }
+
     return render(request, 'index.html', context)
 
 
