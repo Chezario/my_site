@@ -1,5 +1,4 @@
 from t_tech.invest import Client
-import os
 from .token import INVEST_TOKEN
 
 

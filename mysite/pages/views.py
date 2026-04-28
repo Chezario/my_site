@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 from decimal import Decimal
+from django.contrib.auth import logout
 
 from .t_invest_utils import get_current_price, get_stock_price, quotation_to_decimal
 from .models import SecurityTransaction, UploadedFile
@@ -88,7 +89,9 @@ def index(request):
             tmon_count = (transaction.real_price * transaction.buy_quantity) / transaction.tmon_price_on_date
             transaction.tmon_result = tmon_price * tmon_count - transaction.tmon_price_on_date * tmon_count
             tfoot_data['tmon_summ'] += transaction.tmon_result
+
         transaction.result = (transaction.current_price * transaction.buy_quantity) * Decimal('0.9992') - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
+        
         transaction.desired_profit = (transaction.planned_sell_price * transaction.buy_quantity) * Decimal('0.9992') - (transaction.buy_price_per_share * transaction.buy_quantity) - transaction.buy_fee
         transaction.percent_for_desired = (transaction.planned_sell_price - transaction.price_to_zero) / (transaction.price_to_zero / 100)
         transaction.tmon_tod_price = quotation_to_decimal(get_stock_price(TMON_FIGI))
@@ -161,3 +164,7 @@ def upload_file(request):
 def file_list(request):
     files = UploadedFile.objects.all()
     return render(request, 'file_list.html', {'files': files})
+
+def logout_view(request):
+    logout(request)  # Завершаем сессию пользователя
+    return redirect('/')  # Перенаправляем на главную страницу
