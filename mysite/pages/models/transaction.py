@@ -21,11 +21,6 @@ class SecurityTransaction(models.Model):
         on_delete=models.PROTECT,
         verbose_name='Ценная бумага'
     )
-    transaction_type = models.CharField(
-        max_length=4,
-        choices=TRANSACTION_TYPES,
-        verbose_name='Тип операции'
-    )
     buy_quantity = models.PositiveIntegerField(
         verbose_name='Количество бумаг куплено'
     )
@@ -91,7 +86,7 @@ class SecurityTransaction(models.Model):
         ordering = ['-id']
 
     def __str__(self):
-        return f"{self.id} {self.transaction_type} {self.buy_quantity} {self.security.ticker} от {self.transaction_date}, отображение на дашборде {self.is_on_dashboard}"
+        return f"{self.id} покупка {self.buy_quantity} {self.security.ticker} по цене {self.buy_price_per_share} от {self.transaction_date}, отображение на дашборде {self.is_on_dashboard}"
         # field_values = []
         # for field in self._meta.get_fields():
         #     field_values.append(str(getattr(self, field.name, '')))
