@@ -38,7 +38,7 @@ def dashboard(request):
         'quantity': 0
     }
     stock_filter = request.GET.get('category')
-    categories = set(SecurityTransaction.objects.values_list('security__name', flat=True))
+    categories = set(SecurityTransaction.objects.filter(is_on_dashboard=False).values_list('security__name', flat=True))
     if stock_filter:
         transactions = SecurityTransaction.objects.filter(is_on_dashboard=False, user=request.user, security__name=stock_filter)  # Получение записей из базы данных
     else:
