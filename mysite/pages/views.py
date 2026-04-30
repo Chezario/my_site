@@ -101,8 +101,10 @@ def index(request):
         tfoot_data['desired_summ'] += transaction.desired_profit
         tfoot_data['quantity'] += transaction.buy_quantity
         tfoot_data['buy_summ'] += transaction.sum
-
-    tfoot_data['calculate_price'] = tfoot_data['buy_summ'] / tfoot_data['quantity']
+    if tfoot_data['quantity'] != 0:
+        tfoot_data['calculate_price'] = tfoot_data['buy_summ'] / tfoot_data['quantity']
+    else:
+        tfoot_data['calculate_price'] = 0
     context = {
         'transactions': transactions,
         'tfoot_data': tfoot_data,
