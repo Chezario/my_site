@@ -1,6 +1,6 @@
 from t_invest_utils import *
 
-tickers = ['T', 'VTBR', 'SBMM']
+tickers = ['MDMG']
 
 # # for ticker in tickers:
 # #     print(get_current_price(ticker))
