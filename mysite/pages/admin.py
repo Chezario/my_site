@@ -1,11 +1,13 @@
 from django.contrib import admin
 from .models import Printers, Room, Security, Broker, SecurityTransaction, UploadedFile
 
+class PersonAdmin(admin.ModelAdmin):
+    list_filter = ['security', 'is_on_dashboard']
 
 admin.site.register(Room)
 admin.site.register(Printers)
 admin.site.register(Security)
 admin.site.register(Broker)
-admin.site.register(SecurityTransaction)
+admin.site.register(SecurityTransaction, PersonAdmin)
 admin.site.register(UploadedFile)
 
