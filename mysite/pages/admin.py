@@ -2,6 +2,8 @@ from django.contrib import admin
 from .models import Printers, Room, Security, Broker, SecurityTransaction, UploadedFile
 
 class PersonAdmin(admin.ModelAdmin):
+    list_display = ['__str__', 'is_on_dashboard']
+    # search_fields = ['security__name']
     list_filter = ['security', 'is_on_dashboard']
 
 admin.site.register(Room)
