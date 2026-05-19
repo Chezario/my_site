@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Printers, Room, Security, Broker, SecurityTransaction, UploadedFile
 
 
-@admin.action(description="Mark selected is_on_main=False")
+@admin.action(description="Переместить выбранные операции в архив")
 def make_closed(modeladmin, request, queryset):
     queryset.update(is_on_dashboard=False)
 

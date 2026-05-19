@@ -30,3 +30,7 @@ db.sqlite3
 token.py
 test.py
 migrations/
+mysite/media/
+mysite/backups/
+**/__pycache__/
+*.py[cod]

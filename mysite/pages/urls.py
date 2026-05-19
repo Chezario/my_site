@@ -8,7 +8,8 @@ app_name = 'pages'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('dashboard/', views.dashboard, name='dashboard'),
+    path('archive/', views.archive, name='archive'),
+    path('about/', views.about, name='about'),
     path('form/', views.my_form_view, name='my_form'),
     path('<int:operation_id>/', views.operation_details, name='details'),
     path('upload/', views.upload_file, name='upload_file'),

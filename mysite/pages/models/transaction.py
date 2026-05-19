@@ -10,8 +10,8 @@ class SecurityTransaction(models.Model):
 
     is_on_dashboard = models.BooleanField(
         default=True,
-        verbose_name='Отображать на дашборде',
-        help_text='Отметьте, чтобы товар/статья отображалась на дашборде'
+        verbose_name='Отображать на главной странице',
+        help_text='Снимите отметку, чтобы операция попала в архив'
     )
     transaction_date = models.DateTimeField(
         verbose_name='Дата и время операции'
@@ -86,7 +86,7 @@ class SecurityTransaction(models.Model):
         ordering = ['-id']
 
     def __str__(self):
-        return f"{self.id} покупка {self.buy_quantity} {self.security.ticker} по цене {self.buy_price_per_share} от {self.transaction_date}, отображение на дашборде {self.is_on_dashboard}"
+        return f"{self.id} покупка {self.buy_quantity} {self.security.ticker} по цене {self.buy_price_per_share} от {self.transaction_date}, отображение на главной странице {self.is_on_dashboard}"
         # field_values = []
         # for field in self._meta.get_fields():
         #     field_values.append(str(getattr(self, field.name, '')))

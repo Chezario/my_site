@@ -31,7 +31,7 @@ def check_time(time_object: timedelta):
 
 
 @login_required
-def dashboard(request):
+def archive(request):
     tfoot_data = {
         'result_summ': 0,
         'result_with_nalog_summ': 0,
@@ -59,7 +59,7 @@ def dashboard(request):
         'tfoot_data': tfoot_data,
     }
 
-    return render(request, 'dashboard.html', context=context)
+    return render(request, 'archive.html', context=context)
 
 
 @login_required
@@ -146,6 +146,10 @@ def operation_details(request, operation_id):
         'operation': operation
     }
     return render(request, 'operation.html', context)
+
+
+def about(request):
+    return render(request, 'about.html')
 
 
 def custom_404(request, exception):

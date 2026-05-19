@@ -10,7 +10,10 @@
           <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}" aria-current="page" href="{% url 'pages:index' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link{% if request.resolver_match.url_name == 'dashboard' %} active{% endif %}" href={% url 'pages:dashboard' %}>Dashboard</a>
+          <a class="nav-link{% if request.resolver_match.url_name == 'archive' %} active{% endif %}" href="{% url 'pages:archive' %}">Архив</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if request.resolver_match.url_name == 'about' %} active{% endif %}" href="{% url 'pages:about' %}">О нас</a>
         </li>
         <li class="nav-item">
           <a class="nav-link{% if request.resolver_match.url_name == 'admin' %} active{% endif %}" href="{% url 'admin:index' %}">Админка</a>
