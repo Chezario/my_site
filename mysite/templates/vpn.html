@@ -271,13 +271,13 @@
 
       formData.append("username", username);
 
-      const response = await fetch("/api/create/", {
+      {% comment %} const response = await fetch("/api/create/", {
         method: "POST",
         headers: {
           "X-CSRFToken": csrftoken,
         },
         body: formData,
-      });
+      }); {% endcomment %}
 
       const result = await response.json();
 
