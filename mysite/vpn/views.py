@@ -32,7 +32,7 @@ def get_vpn_users(config_path=WG_CONFIG):
         for line in f:
             line = line.strip()
             if line == "[Peer]":
-                if current_user or current_ip:
+                if current_user and current_ip:
                     users.append({
                         "username": current_user,
                         "ip": current_ip
