@@ -37,7 +37,7 @@ def get_vpn_users(config_path=WG_CONFIG):
                         "username": current_user,
                         "ip": current_ip
                     })
-                if urrent_user and current_ip:
+                if current_user and current_ip:
                     current_user = None
                     current_ip = None
             elif line.startswith("#"):
