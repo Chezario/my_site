@@ -33,12 +33,19 @@ def get_vpn_users(config_path=WG_CONFIG):
             line = line.strip()
             if line.startswith("#"):
                 current_user = line.lstrip("#").strip()
+            elif line == "[Peer]":
+                continue
+                # if current_user or current_ip:
+                #     users.append({
+                #         "username": current_user,
+                #         "ip": current_ip
+                #     })
             elif line.startswith("AllowedIPs"):
                 match = re.search(r"=\s*([^,/]+)", line)
                 if match:
                     current_ip = match.group(1)
-            current_user = None
-            current_ip = None
+                current_user = None
+                current_ip = None
         # if current_user or current_ip:
         #     users.append({
         #         "username": current_user,
