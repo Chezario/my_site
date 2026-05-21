@@ -28,6 +28,11 @@ urlpatterns = [
         views.download_config,
         name="download_config"
     ),
+    path(
+        "download_qr/<str:username>/",
+        views.download_qr,
+        name="download_qr"
+    ),
 ]
 
 handler404 = 'pages.views.custom_404'

@@ -222,4 +222,18 @@ def download_config(request, username):
         filename=f"{username}.conf"
     )
 
+def download_qr(request, username):
+
+    path = os.path.join(
+        settings.MEDIA_ROOT,
+        "wireguard",
+        f"{username}.png"
+    )
+
+    return FileResponse(
+        open(path, "rb"),
+        as_attachment=True,
+        filename=f"{username}.png"
+    )
+
 
