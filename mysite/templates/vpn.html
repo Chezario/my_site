@@ -159,7 +159,7 @@
               <th>{{ user.username }}</th>
               <th>{{ user.ip }}</th>
               <th>
-                <a href="{% url 'vpn:download_config' username=user.username %}" class="btn btn-primary">Скачать конфиг</a>
+                <a href="{% url 'vpn:download_config' username=user.username %}" class="btn btn-primary">Скачать конфиг</a></br>
                 <a href="{% url 'vpn:download_qr' username=user.username %}" class="btn btn-primary">Скачать qr</a>
               </th>
             </tr>
