@@ -13,11 +13,11 @@ urlpatterns = [
         views.create_vpn_user,
         name="create_vpn_user"
     ),
-    path(
-        "api/list/",
-        views.list_vpn_users,
-        name="list_vpn_users"
-    ),
+    # path(
+    #     "api/list/",
+    #     views.list_vpn_users,
+    #     name="list_vpn_users"
+    # ),
     path(
         "api/delete/",
         views.delete_vpn_user,
