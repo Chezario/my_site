@@ -31,26 +31,19 @@ def get_vpn_users(config_path=WG_CONFIG):
     with open(config_path, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
-            if line == "[Peer]":
-                if current_user and current_ip:
-                    users.append({
-                        "username": current_user,
-                        "ip": current_ip
-                    })
-                if current_user and current_ip:
-                    current_user = None
-                    current_ip = None
-            elif line.startswith("#"):
+            if line.startswith("#"):
                 current_user = line.lstrip("#").strip()
             elif line.startswith("AllowedIPs"):
                 match = re.search(r"=\s*([^,/]+)", line)
                 if match:
                     current_ip = match.group(1)
-        if current_user or current_ip:
-            users.append({
-                "username": current_user,
-                "ip": current_ip
-            })
+            current_user = None
+            current_ip = None
+        # if current_user or current_ip:
+        #     users.append({
+        #         "username": current_user,
+        #         "ip": current_ip
+        #     })
     return users
 
 
