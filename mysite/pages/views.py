@@ -1,5 +1,13 @@
+import os
+import subprocess
+import tempfile
+import qrcode
+
+from django.conf import settings
+from django.http import JsonResponse, FileResponse
+from django.views.decorators.http import require_http_methods
+
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from datetime import datetime, timedelta
 from django.utils.safestring import mark_safe
 from django.contrib.auth.decorators import login_required
@@ -12,6 +20,7 @@ from .t_invest_utils import get_current_price, get_stock_price, quotation_to_dec
 from .models import SecurityTransaction, UploadedFile
 from .token import INVEST_TOKEN
 from .forms import MyForm, UploadFileForm
+
 
 def plural_form(n, forms=('день', 'дня', 'дней')):
     if str(n)[-1] == '1':
