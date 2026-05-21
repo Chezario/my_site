@@ -7,7 +7,7 @@ from . import views
 app_name = 'vpn'
 
 urlpatterns = [
-    path("", views.vpn_users_page),
+    path("", views.vpn_users_page, name='vpn_users_page'),
     path(
         "api/create/",
         views.create_vpn_user,
