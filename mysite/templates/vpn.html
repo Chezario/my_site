@@ -121,8 +121,6 @@
     width: 300px;
   }
 </style>
-
-  <div class="container">
     <div class="card">
       <h1>WireGuard VPN</h1>
       <form method="post" action="{% url 'vpn:create_vpn_user' %}">
@@ -159,7 +157,7 @@
               <th>{{ user.username }}</th>
               <th>{{ user.ip }}</th>
               <th>
-                <a href="{% url 'vpn:download_config' username=user.username %}" class="btn btn-primary">Скачать конфиг</a></br>
+                <a href="{% url 'vpn:download_config' username=user.username %}" class="btn btn-primary">Скачать конфиг</a>
                 <a href="{% url 'vpn:download_qr' username=user.username %}" class="btn btn-primary">Скачать qr</a>
               </th>
             </tr>
@@ -181,7 +179,7 @@
 
       <button class="btn-primary" onclick="closeQr()">Закрыть</button>
     </div>
-  </div>
+
 
   <script>
     function getCookie(name) {
