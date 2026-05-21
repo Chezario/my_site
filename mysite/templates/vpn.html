@@ -122,7 +122,6 @@
   }
 </style>
 
-<body>
   <div class="container">
     <div class="card">
       <h1>WireGuard VPN</h1>
@@ -133,10 +132,10 @@
 
         <button type="submit">Создать VPN-пользователя</button>
       </form>
-      <div class="form-row">
+      {% comment %} <div class="form-row">
         <input type="text" id="username" placeholder="Имя пользователя" />
         <button class="btn-primary" onclick="createUser()">Создать</button>
-      </div>
+      </div> {% endcomment %}
 
       <div id="status" class="status"></div>
     </div>
