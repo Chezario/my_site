@@ -153,8 +153,15 @@
             <th>Действия</th>
           </tr>
         </thead>
-
-        <tbody id="usersTable"></tbody>
+        <tbody id="usersTable">
+          {% for user in users %}
+            <tr>
+              <th>user</th>
+              <th>IP</th>
+              <th>Действия</th>
+            </tr>
+          {% endfor %}
+        </tbody>
       </table>
     </div>
   </div>

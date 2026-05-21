@@ -1,4 +1,5 @@
 import os
+import re
 import subprocess
 import tempfile
 import qrcode
@@ -22,6 +23,35 @@ SERVER_PUBLIC_KEY = "SERVER_PUBLIC_KEY"
 SERVER_ENDPOINT = "shirokov-it.shop:51820"
 CLIENT_DNS = "1.1.1.1"
 CLIENT_ALLOWED_IPS = "0.0.0.0/0"
+
+def get_vpn_users(config_path=WG_CONFIG):
+    users = []
+    current_user = None
+    current_ip = None
+    with open(config_path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line == "[Peer]":
+                if current_user or current_ip:
+                    users.append({
+                        "username": current_user,
+                        "ip": current_ip
+                    })
+                current_user = None
+                current_ip = None
+            elif line.startswith("#"):
+                current_user = line.lstrip("#").strip()
+            elif line.startswith("AllowedIPs"):
+                match = re.search(r"=\s*([^,/]+)", line)
+                if match:
+                    current_ip = match.group(1)
+        if current_user or current_ip:
+            users.append({
+                "username": current_user,
+                "ip": current_ip
+            })
+    return users
+
 
 def get_used_ips():
     used = []
@@ -47,8 +77,11 @@ def vpn_users_page(request):
     Страница управления VPN пользователями
 
     """
-
-    return render(request, 'vpn.html')
+    users = get_vpn_users()
+    context = {
+        'users': users
+    }
+    return render(request, 'vpn.html', context)
 
 @require_http_methods(["POST"])
 def create_vpn_user(request):
