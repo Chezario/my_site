@@ -156,8 +156,8 @@
         <tbody id="usersTable">
           {% for user in users %}
             <tr>
-              <th>{{ user }}</th>
-              <th>IP</th>
+              <th>{{ user.username }}</th>
+              <th>{{ user.ip }}</th>
               <th>Действия</th>
             </tr>
           {% endfor %}
