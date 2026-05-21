@@ -48,7 +48,7 @@ def vpn_users_page(request):
 
     """
 
-    return render(request, "vpn.html")
+    return render(request, 'vpn.html')
 
 @require_http_methods(["POST"])
 def create_vpn_user(request):
