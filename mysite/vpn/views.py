@@ -34,7 +34,7 @@ def get_vpn_users(config_path=WG_CONFIG):
             if line.startswith("#"):
                 current_user = line.lstrip("#").strip()
             elif line == "[Peer]":
-                continue
+                pass
                 # if current_user or current_ip:
                 #     users.append({
                 #         "username": current_user,
