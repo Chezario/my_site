@@ -126,7 +126,7 @@
   <div class="container">
     <div class="card">
       <h1>WireGuard VPN</h1>
-      <form method="post" action="{% url 'create_vpn_user' %}">
+      <form method="post" action="{% url 'vpn:create_vpn_user' %}">
         {% csrf_token %}
 
         <input type="text" name="username" placeholder="Имя пользователя" />
