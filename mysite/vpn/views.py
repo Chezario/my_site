@@ -99,7 +99,7 @@ def create_vpn_user(request):
             ["bash", "-c", f"echo '{private_key}' | wg pubkey"]
         ).decode().strip()
         # used_ips = get_used_ips()
-        used_ips = []
+        used_ips = get_used_ips()
         client_ip = get_next_ip(used_ips)
         client_config = f"""
 
