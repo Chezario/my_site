@@ -159,23 +159,23 @@ AllowedIPs = {client_ip}/32
             "error": str(e)
         })
     
-def list_vpn_users(request):
-    users = []
-    with open(WG_CONFIG, "r") as f:
-        lines = f.readlines()
-    current_name = None
-    for line in lines:
-        line = line.strip()
-        if line.startswith("# "):
-            current_name = line[2:]
-        elif line.startswith("AllowedIPs") and current_name:
-            ip = line.split("=")[1].strip()
-            users.append({
-                "username": current_name,
-                "ip": ip
-            })
-            current_name = None
-    return JsonResponse(users, safe=False)
+# def list_vpn_users(request):
+#     users = []
+#     with open(WG_CONFIG, "r") as f:
+#         lines = f.readlines()
+#     current_name = None
+#     for line in lines:
+#         line = line.strip()
+#         if line.startswith("# "):
+#             current_name = line[2:]
+#         elif line.startswith("AllowedIPs") and current_name:
+#             ip = line.split("=")[1].strip()
+#             users.append({
+#                 "username": current_name,
+#                 "ip": ip
+#             })
+#             current_name = None
+#     return JsonResponse(users, safe=False)
 
 @require_http_methods(["POST"])
 def delete_vpn_user(request):

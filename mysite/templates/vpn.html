@@ -158,7 +158,9 @@
             <tr>
               <th>{{ user.username }}</th>
               <th>{{ user.ip }}</th>
-              <th>Действия</th>
+              <th>
+                <a href="{% url 'vpn:download_config' username={{ user.username }} %}" class="btn btn-primary">Скачать конфиг</a>
+              </th>
             </tr>
           {% endfor %}
         </tbody>
