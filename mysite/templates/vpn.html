@@ -2,7 +2,7 @@
 {% block title %}VPN{% endblock title %}
 {% block content %}
 <div class="row g-4">
-  <div class="card">
+  {% comment %} <div class="card">
     <div class="card-header">
       <h1>WireGuard VPN</h1>
     </div>
@@ -15,22 +15,22 @@
       <div id="status" class="status"></div>
     </div>
   </div>
-    <h2 class="white">Пользователи</h2>
-      {% for user in users %}
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="card">
-            <div class="card-body">
-              <p>Имя: {{ user.username }}</p>
-              <p>IP адрес: {{ user.ip }}</p>
-              <a href="{% url 'vpn:download_config' username=user.username %}" class="btn btn-primary">Скачать конфиг</a>
-              <a href="{% url 'vpn:download_qr' username=user.username %}" class="btn btn-primary">Скачать qr</a>
-            </div>
-          </div>
+    <h2 class="white">Пользователи</h2> {% endcomment %}
+  {% for user in users %}
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <p>Имя: {{ user.username }}</p>
+          <p>IP адрес: {{ user.ip }}</p>
+          <a href="{% url 'vpn:download_config' username=user.username %}" class="btn btn-primary">Скачать конфиг</a>
+          <a href="{% url 'vpn:download_qr' username=user.username %}" class="btn btn-primary">Скачать qr</a>
         </div>
-        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
 
-        </div>
-<script>
+</div>
+{% comment %} <script>
   function getCookie(name) {
     let cookieValue = null;
 
@@ -128,13 +128,13 @@
 
     formData.append("username", username);
 
-    {% comment %} const response = await fetch("/api/create/", {
+  const response = await fetch("/api/create/", {
       method: "POST",
       headers: {
         "X-CSRFToken": csrftoken,
       },
       body: formData,
-    }); {% endcomment %}
+    }); 
 
     const result = await response.json();
 
@@ -195,7 +195,7 @@
   }
 
   loadUsers();
-</script>
+</script> {% endcomment %}
 
 {% endblock content %}
 
