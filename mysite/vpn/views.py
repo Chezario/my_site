@@ -88,9 +88,9 @@ def vpn_users_page(request):
     }
     return render(request, 'vpn.html', context)
 
-def confirm_delete_vpn_user(request, user):
+def confirm_delete_vpn_user(request, username):
     context = {
-        'user': user
+        'user': username
     }
     return render(request, 'confirm_delere.html', context)
 
