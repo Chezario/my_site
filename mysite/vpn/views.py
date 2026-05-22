@@ -24,6 +24,7 @@ SERVER_ENDPOINT = "91.105.197.173:51830"
 CLIENT_DNS = "8.8.8.8"
 CLIENT_ALLOWED_IPS = "0.0.0.0/0"
 
+@login_required
 def get_vpn_users(config_path=WG_CONFIG):
     users = []
     current_user = None
@@ -53,7 +54,7 @@ def get_vpn_users(config_path=WG_CONFIG):
         #     })
     return users
 
-
+@login_required
 def get_used_ips():
     used = []
     with open(WG_CONFIG, "r") as f:
@@ -64,6 +65,7 @@ def get_used_ips():
                 used.append(ip)
     return used
 
+@login_required
 def get_next_ip(used):
     for i in range(2, 255):
         ip = f"10.0.1.{i}"
@@ -71,6 +73,7 @@ def get_next_ip(used):
             return ip
     raise Exception("Свободных адресов нет")
 
+@login_required
 def vpn_users_page(request):
 
     """
@@ -208,6 +211,7 @@ def delete_vpn_user(request, username):
         "success": True
     })
 
+@login_required
 def download_config(request, username):
 
     path = os.path.join(
@@ -222,6 +226,7 @@ def download_config(request, username):
         filename=f"{username}.conf"
     )
 
+@login_required
 def download_qr(request, username):
 
     path = os.path.join(
