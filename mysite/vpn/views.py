@@ -88,6 +88,12 @@ def vpn_users_page(request):
     }
     return render(request, 'vpn.html', context)
 
+def confirm_delete_vpn_user(request, user):
+    context = {
+        'user': user
+    }
+    return render(request, 'confirm_delere.html', context)
+
 @require_http_methods(["POST"])
 def create_vpn_user(request):
     username = request.POST.get("username")

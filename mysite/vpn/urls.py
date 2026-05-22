@@ -33,6 +33,11 @@ urlpatterns = [
         views.download_qr,
         name="download_qr"
     ),
+    path(
+        "confirm_delete/<str:username>/",
+        views.confirm_delete_vpn_user,
+        name="confirm_delete_vpn_user"
+    ),
 ]
 
 handler404 = 'pages.views.custom_404'
