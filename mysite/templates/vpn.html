@@ -141,7 +141,6 @@
     {% comment %} <div class="card"> {% endcomment %}
       <h2>Пользователи</h2>
 
-      <br />
 
       {% comment %} <table>
         <thead>
@@ -162,6 +161,8 @@
                   <a href="{% url 'vpn:download_qr' username=user.username %}" class="btn btn-primary">Скачать qr</a>
                 </p>
             </div>
+            </div>
+            
             {% comment %} <tr>
               <th>{{ user.username }}</th>
               <th>{{ user.ip }}</th>
@@ -173,7 +174,7 @@
           {% endfor %}
         {% comment %} </tbody> {% endcomment %}
       {% comment %} </table> {% endcomment %}
-    </div>
+
   {% comment %} </div> {% endcomment %}
 
   <div class="modal" id="qrModal">
