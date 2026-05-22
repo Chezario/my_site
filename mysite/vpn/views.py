@@ -19,9 +19,9 @@ from django.views.decorators.http import require_http_methods
 
 WG_INTERFACE = "wg0"
 WG_CONFIG = "/home/www/wg0.conf"
-SERVER_PUBLIC_KEY = "SERVER_PUBLIC_KEY"
-SERVER_ENDPOINT = "shirokov-it.shop:51820"
-CLIENT_DNS = "1.1.1.1"
+SERVER_PUBLIC_KEY = "SkiGfM0PwODSck07h+M/vmQXE+BFJe4sOQZVrnUITyc="
+SERVER_ENDPOINT = "91.105.197.173:51830"
+CLIENT_DNS = "8.8.8.8"
 CLIENT_ALLOWED_IPS = "0.0.0.0/0"
 
 def get_vpn_users(config_path=WG_CONFIG):
@@ -66,7 +66,7 @@ def get_used_ips():
 
 def get_next_ip(used):
     for i in range(2, 255):
-        ip = f"10.10.10.{i}"
+        ip = f"10.0.1.{i}"
         if ip not in used:
             return ip
     raise Exception("Свободных адресов нет")
