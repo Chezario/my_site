@@ -179,18 +179,18 @@ AllowedIPs = {client_ip}/32
 #     return JsonResponse(users, safe=False)
 
 @require_http_methods(["POST"])
-def delete_vpn_user(request):
-    username = request.POST.get("username")
-    if not username:
-        return JsonResponse({
-            "success": False
-        })
+def delete_vpn_user(request, user):
+    # username = request.POST.get("username")
+    # if not username:
+    #     return JsonResponse({
+    #         "success": False
+    #     })
     with open(WG_CONFIG, "r") as f:
         lines = f.readlines()
     result = []
     skip = False
     for line in lines:
-        if line.strip() == f"# {username}":
+        if line.strip() == f"# {user}":
             skip = True
             continue
         if skip and line.strip() == "":
