@@ -3,19 +3,19 @@
 {% block content %}
 <h2>Подтверждение удаления</h2>
 
-<p>
+{% comment %} <p>
     Вы действительно хотите удалить пользователя
     <strong>{{ user }}</strong>?
 </p>
 
-{% comment %} <form method="post" action="{% url 'vpn:delete_vpn_user' user %}">
+<form method="post" action="{% url 'vpn:delete_vpn_user' user %}">
   {% csrf_token %}
   <button type="submit" class="btn btn-primary">Удалить</button>
-</form> {% endcomment %}
+</form> 
 
 <a href="{% url 'vpn:vpn_users' %}" class="btn btn-secondary">
   Отмена
-</a>
+</a> {% endcomment %}
 
 {% endblock content %}
 
