@@ -134,7 +134,7 @@ AllowedIPs = {client_ip}/32
         # )
 
         subprocess.run(
-            ["systemctl", "restart", "wg-quick@wg0"],
+            ["sudo", "systemctl", "restart", "wg-quick@wg0"],
             check=True
         )
 
