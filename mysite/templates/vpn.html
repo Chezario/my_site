@@ -143,14 +143,14 @@
 
       <br />
 
-      <table>
+      {% comment %} <table>
         <thead>
           <tr>
             <th>Имя</th>
             <th>IP</th>
             <th>Действия</th>
           </tr>
-        </thead>
+        </thead> {% endcomment %}
         <tbody id="usersTable">
           {% for user in users %}
             <div class="card">
