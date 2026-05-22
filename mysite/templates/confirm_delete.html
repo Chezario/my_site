@@ -3,7 +3,7 @@
 {% block content %}
 <h2>Подтверждение удаления</h2>
 
-{% comment %} <p>
+<p>
     Вы действительно хотите удалить пользователя
     <strong>{{ user }}</strong>?
 </p>
@@ -15,7 +15,7 @@
 
 <a href="{% url 'vpn:vpn_users' %}" class="btn btn-secondary">
   Отмена
-</a> {% endcomment %}
+</a>
 
 {% endblock content %}
 
