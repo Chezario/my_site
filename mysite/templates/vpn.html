@@ -151,11 +151,13 @@
           </tr>
         </thead> {% endcomment %}
         {% comment %} <tbody id="usersTable"> {% endcomment %}
+        <div class="row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
           {% for user in users %}
             <div class="card">
               <div class="card-body">
-                <p>{{ user.username }}</p>
-                <p>{{ user.ip }}</p>
+                <p>Имя: {{ user.username }}</p>
+                <p>IP адрес: {{ user.ip }}</p>
                 <p>
                   <a href="{% url 'vpn:download_config' username=user.username %}" class="btn btn-primary">Скачать конфиг</a>
                   <a href="{% url 'vpn:download_qr' username=user.username %}" class="btn btn-primary">Скачать qr</a>
@@ -174,10 +176,10 @@
           {% endfor %}
         {% comment %} </tbody> {% endcomment %}
       {% comment %} </table> {% endcomment %}
-
+          </div>
+          </div>
   {% comment %} </div> {% endcomment %}
-
-  <div class="modal" id="qrModal">
+  {% comment %} <div class="modal" id="qrModal">
     <div class="modal-content">
       <h3>QR-код клиента</h3>
 
@@ -188,7 +190,7 @@
       <br /><br />
 
       <button class="btn-primary" onclick="closeQr()">Закрыть</button>
-    </div>
+    </div> {% endcomment %}
 
 
   <script>
