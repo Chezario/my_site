@@ -128,9 +128,14 @@ AllowedIPs = {client_ip}/32
 """
         with open(WG_CONFIG, "a") as f:
             f.write(peer_block)
+        # subprocess.run(
+        #     ["wg", "syncconf", WG_INTERFACE, WG_CONFIG],
+        #     check=False
+        # )
+
         subprocess.run(
-            ["wg", "syncconf", WG_INTERFACE, WG_CONFIG],
-            check=False
+            ["systemctl", "restart", "wg-quick@wg0"],
+            check=True
         )
 
         user_dir = os.path.join(
