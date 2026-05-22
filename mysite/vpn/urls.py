@@ -19,7 +19,7 @@ urlpatterns = [
     #     name="list_vpn_users"
     # ),
     path(
-        "api/delete/<str:username>",
+        "api/delete/",
         views.delete_vpn_user,
         name="delete_vpn_user"
     ),
