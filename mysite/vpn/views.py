@@ -26,7 +26,7 @@ CLIENT_DNS = "8.8.8.8"
 CLIENT_ALLOWED_IPS = "0.0.0.0/0"
 
 @login_required
-def get_vpn_users(config_path=WG_CONFIG):
+def get_vpn_users(request, config_path=WG_CONFIG):
     users = []
     current_user = None
     current_ip = None
