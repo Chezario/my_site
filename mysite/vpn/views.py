@@ -56,7 +56,7 @@ def get_vpn_users(request, config_path=WG_CONFIG):
     return users
 
 @login_required
-def get_used_ips():
+def get_used_ips(request):
     used = []
     with open(WG_CONFIG, "r") as f:
         for line in f:
@@ -104,7 +104,7 @@ def create_vpn_user(request):
             ["bash", "-c", f"echo '{private_key}' | wg pubkey"]
         ).decode().strip()
         # used_ips = get_used_ips()
-        used_ips = get_used_ips()
+        used_ips = get_used_ips(request)
         client_ip = get_next_ip(used_ips)
         client_config = f"""
 
