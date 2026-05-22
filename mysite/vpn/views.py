@@ -82,7 +82,7 @@ def vpn_users_page(request):
     Страница управления VPN пользователями
 
     """
-    users = get_vpn_users()
+    users = get_vpn_users(request)
     context = {
         'users': users
     }
