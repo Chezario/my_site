@@ -8,10 +8,10 @@
     <strong>{{ user }}</strong>?
 </p>
 
-<form method="post" action="{% url 'vpn:delete_vpn_user' user %}">
+{% comment %} <form method="post" action="{% url 'vpn:delete_vpn_user' user %}">
   {% csrf_token %}
   <button type="submit" class="btn btn-primary">Удалить</button>
-</form>
+</form> {% endcomment %}
 
 <a href="{% url 'vpn:vpn_users' %}" class="btn btn-secondary">
   Отмена
