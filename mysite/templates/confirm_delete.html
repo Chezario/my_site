@@ -1,21 +1,38 @@
 {% extends 'base.html' %}
 {% block title %}VPN{% endblock title %}
 {% block content %}
-<h2>Подтверждение удаления</h2>
 
-<p>
-    Вы действительно хотите удалить пользователя
-    <strong>{{ user }}</strong>?
-</p>
+<div class="container text-white">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2>Подтверждение удаления</h2>
 
-<form method="post" action="{% url 'vpn:delete_vpn_user' user %}">
-  {% csrf_token %}
-  <button type="submit" class="btn btn-primary">Удалить</button>
-</form> 
+          <p>
+              Вы действительно хотите удалить пользователя
+              <strong>{{ user }}</strong>?
+          </p>
 
-<a href="{% url 'vpn:vpn_users_page' %}" class="btn btn-secondary">
-  Отмена
-</a>
+          <form method="post" action="{% url 'vpn:delete_vpn_user' user %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Удалить</button>
+          </form> 
+
+          <a href="{% url 'vpn:vpn_users_page' %}" class="btn btn-secondary">
+            Отмена
+          </a>
+					
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 
 {% endblock content %}
 
