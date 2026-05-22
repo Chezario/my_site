@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}VPN{% endblock title %}
 {% block content %}
-<style>
+{% comment %} <style>
   * {
     margin: 0;
     padding: 0;
@@ -120,7 +120,7 @@
   .modal img {
     width: 300px;
   }
-</style>
+</style> {% endcomment %}
     <div class="card">
       <h1>WireGuard VPN</h1>
       <form method="post" action="{% url 'vpn:create_vpn_user' %}">
