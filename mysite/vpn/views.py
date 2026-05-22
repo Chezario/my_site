@@ -179,7 +179,7 @@ AllowedIPs = {client_ip}/32
 #     return JsonResponse(users, safe=False)
 
 @require_http_methods(["POST"])
-def delete_vpn_user(request, user):
+def delete_vpn_user(request, username):
     # username = request.POST.get("username")
     # if not username:
     #     return JsonResponse({
@@ -190,7 +190,7 @@ def delete_vpn_user(request, user):
     result = []
     skip = False
     for line in lines:
-        if line.strip() == f"# {user}":
+        if line.strip() == f"# {username}":
             skip = True
             continue
         if skip and line.strip() == "":
