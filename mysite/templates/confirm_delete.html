@@ -8,7 +8,7 @@
     <strong>{{ user }}</strong>?
 </p>
 
-<form method="post" action="{% url 'vpn:delete_vpn_user' user.username %}">
+<form method="post" action="{% url 'vpn:delete_vpn_user' user %}">
   {% csrf_token %}
   <button type="submit" class="btn btn-primary">Удалить</button>
 </form>
