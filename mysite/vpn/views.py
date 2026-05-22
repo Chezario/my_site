@@ -92,7 +92,7 @@ def confirm_delete_vpn_user(request, username):
     context = {
         'user': username
     }
-    return render(request, 'confirm_delere.html', context)
+    return render(request, 'confirm_delete.html', context)
 
 @require_http_methods(["POST"])
 def create_vpn_user(request):
