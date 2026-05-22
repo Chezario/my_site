@@ -24,7 +24,7 @@
           <p>IP адрес: {{ user.ip }}</p>
           <a href="{% url 'vpn:download_config' username=user.username %}" class="btn btn-primary">Скачать конфиг</a>
           <a href="{% url 'vpn:download_qr' username=user.username %}" class="btn btn-primary">Скачать qr</a>
-          <a href="{% url 'vpn:confirm_delete_vpn_user' username=user.username %}" class="btn btn-primary">Удалить</a>
+          <a href="{% url 'vpn:confirm_delete_vpn_user' user=user.username %}" class="btn btn-primary">Удалить</a>
           {% comment %} <form method="post" action="{% url 'vpn:delete_vpn_user' user.username %}">
             {% csrf_token %}
             <button type="submit" class="btn btn-primary">Удалить</button>
