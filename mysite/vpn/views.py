@@ -18,7 +18,7 @@ from django.views.decorators.http import require_http_methods
 # CLIENT_ALLOWED_IPS = "0.0.0.0/0"
 
 WG_INTERFACE = "wg0"
-WG_CONFIG = "/home/www/wg0.conf"
+WG_CONFIG = "/etc/wireguard/wg0.conf"
 SERVER_PUBLIC_KEY = "JaIJ3VwK6YVd5EtmTaRpL+XgpVaF9HMcjp8xSe8nnwo="
 SERVER_ENDPOINT = "91.105.197.173:51830"
 CLIENT_DNS = "8.8.8.8"
