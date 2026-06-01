@@ -8,6 +8,7 @@ env/
 .venv/
 
 # Файлы Python
+settings.py
 __pycache__/
 *.pyc
 *.pyo
@@ -23,7 +24,7 @@ __pycache__/
 # Системные файлы
 .DS_Store
 Thumbs.db
-settings.py
+
 
 # Локальная статика
 db.sqlite3
