@@ -200,11 +200,44 @@
         <h2>Расскажите задачу — предложу понятное решение</h2>
         <p>Напишите, что нужно разработать или настроить. Я помогу оценить сроки, стоимость и технический подход.</p>
       </div>
-      <form class="contact-form">
+      {% comment %} <form class="contact-form">
         <input type="text" placeholder="Ваше имя" required>
         <input type="tel" placeholder="Телефон или Telegram" required>
         <textarea placeholder="Кратко опишите задачу"></textarea>
         <button type="submit" class="btn primary">Отправить заявку</button>
+      </form> {% endcomment %}
+            <form class="lead-form" id="request" method="post" novalidate>
+        {% csrf_token %}
+        <h2>Оставить заявку</h2>
+        {% if messages %}
+          {% for message in messages %}
+            <div class="form-message">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+        {% if form.errors %}
+          <div class="form-message form-message-error">Проверьте имя, телефон и тип техники.</div>
+        {% endif %}
+        <label>
+          <span>{{ form.name.label }}</span>
+          {{ form.name }}
+        </label>
+        <label>
+          <span>{{ form.phone.label }}</span>
+          {{ form.phone }}
+        </label>
+        <label>
+          <span>{{ form.vehicle_type.label }}</span>
+          {{ form.vehicle_type }}
+        </label>
+        <label>
+          <span>{{ form.budget.label }}</span>
+          {{ form.budget }}
+        </label>
+        <label class="wide-field">
+          <span>{{ form.comment.label }}</span>
+          {{ form.comment }}
+        </label>
+        <button class="button button-primary" type="submit">Отправить заявку</button>
       </form>
     </section>
   </main>

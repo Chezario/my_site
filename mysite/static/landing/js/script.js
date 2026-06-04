@@ -76,5 +76,5 @@ setInterval(next, 6000);
 
 document.querySelector(".contact-form").addEventListener("submit", (event) => {
   event.preventDefault();
-  alert("Заявка отправлена! Здесь можно подключить отправку в Telegram, email или Django backend.");
+  alert("Заявка отправлена!");
 });
