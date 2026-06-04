@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Игорь Широков — веб-приложения и серверные решения</title>
+  <link rel="stylesheet" href="{% static 'landing/css/style.css' %}" />
+  <script defer src="{% static 'landing/js/script.js' %}"></script>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <header class="header">
+    <a href="#" class="logo"><span>&lt;/&gt;</span> SHIROKOV IT</a>
+    <nav class="nav">
+      <a href="#services">Услуги</a>
+      <a href="#cases">Проекты</a>
+      <a href="#prices">Стоимость</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contact" class="nav-btn">Обсудить проект</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn">☰</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content reveal">
+        <div class="badge">Python • Django • Docker • Linux</div>
+        <h1>Разработка веб-приложений и серверных решений для бизнеса</h1>
+        <p>
+          Создаю сайты, CRM, личные кабинеты, Telegram-ботов и внутренние системы.
+          Настраиваю серверы, деплой, базы данных, безопасность и сопровождение.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn primary">Получить консультацию</a>
+          <a href="#prices" class="btn secondary">Посмотреть цены</a>
+        </div>
+        <div class="stats">
+          <div><strong data-counter="35">0</strong><span>проектов</span></div>
+          <div><strong data-counter="7">0</strong><span>лет опыта</span></div>
+          <div><strong data-counter="24">0</strong><span>часа поддержка</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="server-card floating">
+          <div class="server-lights"><span></span><span></span><span></span></div>
+          <pre><code>def create_app():
+    app = Django()
+    app.config("production")
+    return JsonResponse({"status": "ok"})</code></pre>
+        </div>
+        <div class="orbit">
+          <span>&lt;/&gt;</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="image-strip reveal">
+      <div class="photo-card photo-server">
+        <div>
+          <h3>Серверная инфраструктура</h3>
+          <p>Linux, Nginx, Gunicorn, Docker, PostgreSQL</p>
+        </div>
+      </div>
+      <div class="photo-card photo-engineer">
+        <div>
+          <h3>Настройка оборудования</h3>
+          <p>Сети, рабочие места, удалённый доступ, безопасность</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="section-head reveal">
+        <span>УСЛУГИ</span>
+        <h2>Что я могу сделать</h2>
+      </div>
+      <div class="services">
+        <article class="service-card reveal">
+          <div class="icon">⚙</div>
+          <h3>Веб-приложения</h3>
+          <p>CRM, панели управления, личные кабинеты, внутренние системы и сервисы под задачи компании.</p>
+        </article>
+        <article class="service-card reveal">
+          <div class="icon">☁</div>
+          <h3>Деплой и серверы</h3>
+          <p>Настройка Ubuntu, Nginx, Gunicorn, Docker, SSL-сертификатов, резервного копирования.</p>
+        </article>
+        <article class="service-card reveal">
+          <div class="icon">🤖</div>
+          <h3>Telegram-боты</h3>
+          <p>Боты для заявок, уведомлений, оплаты, личных кабинетов и автоматизации процессов.</p>
+        </article>
+        <article class="service-card reveal">
+          <div class="icon">🔐</div>
+          <h3>VPN и безопасность</h3>
+          <p>WireGuard, Amnezia, разграничение доступа, защита серверов и настройка безопасной работы.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section cases" id="cases">
+      <div class="section-head reveal">
+        <span>ПРОЕКТЫ</span>
+        <h2>Примеры решений</h2>
+      </div>
+      <div class="case-grid">
+        <div class="case-card reveal">
+          <h3>Система управления клиентами</h3>
+          <p>CRM с заявками, ролями пользователей, отчётами и удобной админ-панелью.</p>
+          <a href="#contact">Заказать похожий проект →</a>
+        </div>
+        <div class="case-card reveal">
+          <h3>Панель управления VPN</h3>
+          <p>Добавление и удаление пользователей, генерация конфигов, интеграция с сервером.</p>
+          <a href="#contact">Обсудить задачу →</a>
+        </div>
+        <div class="case-card reveal">
+          <h3>Telegram-бот для бизнеса</h3>
+          <p>Автоматизация заявок, уведомления менеджерам, база клиентов и быстрые команды.</p>
+          <a href="#contact">Нужен бот →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="prices">
+      <div class="section-head reveal">
+        <span>СТОИМОСТЬ</span>
+        <h2>Пакеты услуг</h2>
+      </div>
+      <div class="price-grid">
+        <article class="price-card reveal">
+          <h3>Старт</h3>
+          <p>Лендинг или небольшой сайт</p>
+          <strong>от 35 000 ₽</strong>
+          <ul>
+            <li>Адаптивная вёрстка</li>
+            <li>Форма заявки</li>
+            <li>Базовая SEO-подготовка</li>
+            <li>Размещение на сервере</li>
+          </ul>
+          <a href="#contact" class="btn secondary">Выбрать</a>
+        </article>
+        <article class="price-card featured reveal">
+          <div class="popular">Популярно</div>
+          <h3>Бизнес</h3>
+          <p>Веб-приложение или CRM</p>
+          <strong>от 90 000 ₽</strong>
+          <ul>
+            <li>Python / Django</li>
+            <li>База данных</li>
+            <li>Панель администратора</li>
+            <li>Авторизация пользователей</li>
+            <li>Деплой и SSL</li>
+          </ul>
+          <a href="#contact" class="btn primary">Обсудить</a>
+        </article>
+        <article class="price-card reveal">
+          <h3>Сопровождение</h3>
+          <p>Поддержка сайта и сервера</p>
+          <strong>от 15 000 ₽/мес</strong>
+          <ul>
+            <li>Обновления</li>
+            <li>Резервные копии</li>
+            <li>Мониторинг</li>
+            <li>Исправления и доработки</li>
+          </ul>
+          <a href="#contact" class="btn secondary">Подключить</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reviews" id="reviews">
+      <div class="section-head reveal">
+        <span>ОТЗЫВЫ</span>
+        <h2>Что говорят клиенты</h2>
+      </div>
+      <div class="review-slider reveal">
+        <button class="slider-btn" id="prevReview">‹</button>
+        <div class="review active">
+          <p>“Сделали удобную систему для заявок и контроля клиентов. Всё работает быстро, понятно и без лишних сложностей.”</p>
+          <h4>Алексей, сервисная компания</h4>
+        </div>
+        <div class="review">
+          <p>“Настроили сервер, домен, SSL и деплой проекта. Теперь сайт стабильно работает и его легко обновлять.”</p>
+          <h4>Марина, онлайн-школа</h4>
+        </div>
+        <div class="review">
+          <p>“Telegram-бот сократил ручную работу менеджеров. Заявки больше не теряются, уведомления приходят моментально.”</p>
+          <h4>Дмитрий, малый бизнес</h4>
+        </div>
+        <button class="slider-btn" id="nextReview">›</button>
+      </div>
+    </section>
+
+    <section class="cta reveal" id="contact">
+      <div>
+        <span>ОБСУДИМ ПРОЕКТ</span>
+        <h2>Расскажите задачу — предложу понятное решение</h2>
+        <p>Напишите, что нужно разработать или настроить. Я помогу оценить сроки, стоимость и технический подход.</p>
+      </div>
+      <form class="contact-form">
+        <input type="text" placeholder="Ваше имя" required>
+        <input type="tel" placeholder="Телефон или Telegram" required>
+        <textarea placeholder="Кратко опишите задачу"></textarea>
+        <button type="submit" class="btn primary">Отправить заявку</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 SHIROKOV IT. Веб-разработка и серверные решения.</p>
+    <p>Python • Django • PostgreSQL • Docker • Linux</p>
+  </footer>
+</body>
+</html>
