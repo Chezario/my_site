@@ -74,7 +74,3 @@ nextReview.addEventListener("click", next);
 prevReview.addEventListener("click", prev);
 setInterval(next, 6000);
 
-document.querySelector(".contact-form").addEventListener("submit", (event) => {
-  event.preventDefault();
-  alert("Заявка отправлена!");
-});

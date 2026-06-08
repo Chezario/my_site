@@ -200,14 +200,10 @@
         <h2>Расскажите задачу — предложу понятное решение</h2>
         <p>Напишите, что нужно разработать или настроить. Я помогу оценить сроки, стоимость и технический подход.</p>
       </div>
-      {% csrf_token %}
       <form class="contact-form" method="post">
-        <input type="text" placeholder="Ваше имя" required>
-        {{ form.name }}
-        <input type="tel" placeholder="Телефон или Telegram" required>
-        {{ form.phone }}
-        <textarea placeholder="Кратко опишите задачу"></textarea>
-        {{ form.comment }}
+        {% csrf_token %}
+        {% comment %} <input type="text" placeholder="Ваше имя" required> {% endcomment %}
+        {{ form.as_p }}
         <button type="submit" class="btn primary">Отправить заявку</button>
       </form>
             {% comment %} <form class="lead-form" id="request" method="post" novalidate>

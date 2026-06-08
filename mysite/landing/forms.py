@@ -18,7 +18,7 @@ class TicketForm(forms.ModelForm):
             'comment': forms.Textarea(attrs={'placeholder': '', 'rows': 4}),
         }
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs.setdefault('class', 'form-control')
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     for field in self.fields.values():
+    #         field.widget.attrs.setdefault('class', 'form-control')
